@@ -5,8 +5,11 @@ const Recipes = (props) => {
 
     let recipes = recipesData ? recipesData.map(recipe => {
         return(
-            <p key={recipe.id}>{recipe.recipe_title}</p>
-
+            <div key={recipe.id}>
+                <h3 >{recipe.recipe_title}</h3>
+                <p>{recipe.recipe_added_date}</p>
+                <p>{recipe.recipe_details}</p>
+            </div>
         )
     }) : null
 

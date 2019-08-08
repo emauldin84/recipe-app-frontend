@@ -16,9 +16,7 @@ class Dashboard extends Component {
                 recipes: recipesData,
             })
         })
-        .catch (err => {
-            console.log(err)
-        })
+        .catch (err => err)
         
     }
 
