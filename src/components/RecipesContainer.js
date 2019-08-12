@@ -5,7 +5,9 @@ import Recipes from './Recipes'
 const RecipesContainer = (props) => {
     return(
         <div>
-            <Recipes recipesData={props.recipes}/>
+            <Recipes 
+                recipesData={props.recipes}
+                handleClickedRecipe={props.handleClickedRecipe}/>
         </div>
     )
 }

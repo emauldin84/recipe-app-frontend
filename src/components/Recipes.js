@@ -5,10 +5,8 @@ const Recipes = (props) => {
 
     let recipes = recipesData ? recipesData.map(recipe => {
         return(
-            <div key={recipe.id}>
+            <div className={'recipeContainer'} key={recipe.id} onClick={() => props.handleClickedRecipe(recipe.id)}>
                 <h3 >{recipe.recipe_title}</h3>
-                <p>{recipe.recipe_added_date}</p>
-                <p>{recipe.recipe_details}</p>
             </div>
         )
     }) : null
