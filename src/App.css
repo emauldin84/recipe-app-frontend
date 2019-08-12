@@ -13,3 +13,20 @@
 .recipeContainer:hover {
   cursor: pointer;
 }
+
+
+.arrow {
+  position: relative;
+  display: inline-block;
+  margin: 40px;
+  
+  /* set size */
+  padding: 10px;
+  
+  /* set tickness */
+  box-shadow: 5px -5px 0 0 tomato inset;
+}
+
+.arrow--left {
+  transform: rotate(45deg);
+}
