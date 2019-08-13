@@ -38,6 +38,10 @@ clickedRecipeHandler = (recipeId) => {
     
 }
 
+clickedBackButtonHandler = () => {
+  console.log('back to the future')
+  this.props.history.goBack()
+}
 
   render() {
     let routes = (
@@ -46,7 +50,8 @@ clickedRecipeHandler = (recipeId) => {
           path='/recipe/:id' 
           render={(props) => <Recipe 
                           {...props} 
-                          selectedRecipe={this.state.selectedRecipe}/>} />
+                          selectedRecipe={this.state.selectedRecipe}
+                          handleClickedBackButton={this.clickedBackButtonHandler}/>} />
         <Route 
           path='/' exact 
           render={(props) => <Dashboard 

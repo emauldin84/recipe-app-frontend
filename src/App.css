@@ -10,7 +10,7 @@
   color: white;
 }
 
-.recipeContainer:hover {
+.recipeContainer:hover, .arrow:hover{
   cursor: pointer;
 }
 
@@ -18,7 +18,7 @@
 .arrow {
   position: relative;
   display: inline-block;
-  margin: 40px;
+  margin: 5px;
   
   /* set size */
   padding: 10px;

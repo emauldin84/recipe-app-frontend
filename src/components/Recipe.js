@@ -22,7 +22,7 @@ const Recipe = (props) => {
 
     return(
         <div>
-            <BackButton />
+            <BackButton handleClickedBackButton={props.handleClickedBackButton}/>
             {recipe}
         </div>
     )
