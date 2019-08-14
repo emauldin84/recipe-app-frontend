@@ -5,9 +5,9 @@ import { NavLink } from 'react-router-dom'
 const Nav = (props) => {
     return (
         <div className='navContainer'>
-            <NavLink className='title'>C's Recipes</NavLink>
+            <NavLink to='/' className='title'>C's Recipes</NavLink>
             <ul>
-                <NavLink className='addRecipe'>+</NavLink>
+                <NavLink to='/new-recipe' className='addRecipe'>+</NavLink>
             </ul>
         </div>
     )

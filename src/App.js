@@ -7,6 +7,7 @@ import './App.css';
 import Dashboard from './containers/Dashboard'
 import Recipe from './components/Recipe'
 import Nav from './containers/Nav'
+import AddRecipeForm from './components/AddRecipeForm'
 
 
 
@@ -55,6 +56,11 @@ clickedBackButtonHandler = () => {
                             {...props} 
                             selectedRecipe={this.state.selectedRecipe}
                             handleClickedBackButton={this.clickedBackButtonHandler}/>} />
+          <Route
+            path='/new-recipe'
+            render={(props) => <AddRecipeForm
+                                {...props}
+                                handleClickedBackButton={this.clickedBackButtonHandler}/>} />
           <Route 
             path='/' exact 
             render={(props) => <Dashboard 
