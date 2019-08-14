@@ -21,7 +21,7 @@ const Recipe = (props) => {
     }) : null
 
     return(
-        <div>
+        <div className='recipeContainer'>
             <BackButton handleClickedBackButton={props.handleClickedBackButton}/>
             {recipe}
         </div>

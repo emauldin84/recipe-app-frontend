@@ -5,16 +5,24 @@ const Recipes = (props) => {
 
     let recipes = recipesData ? recipesData.map(recipe => {
         return(
-            <div className={'recipeContainer'} key={recipe.id} onClick={() => props.handleClickedRecipe(recipe.id)}>
-                <h3 >{recipe.recipe_title}</h3>
-            </div>
+            // <div key={recipe.id} onClick={() => props.handleClickedRecipe(recipe.id)}>
+            //     <h3 >{recipe.recipe_title}</h3>
+            // </div>
+            <article className="card" key={recipe.id} onClick={() => props.handleClickedRecipe(recipe.id)}>
+                <img src={recipe.recipe_photo ? recipe.recipe_photo : null} alt="Sample"/>
+                <div className="recipeTitle">
+                    <h3>{recipe.recipe_title}</h3>
+                </div>
+            </article>
         )
     }) : null
 
     return(
-        <div>
+        <div className='cards'>
             {recipes}
         </div>
+
+        
     )
 }
 
