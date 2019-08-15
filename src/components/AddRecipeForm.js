@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 
 import BackButton from '../utils/BackButton'
+import PhotoUploader from '../utils/PhotoUploader'
 
 class AddRecipeForm extends Component {
     state = {
@@ -18,15 +19,16 @@ class AddRecipeForm extends Component {
         return (
             <div>
                 <BackButton handleClickedBackButton={this.props.handleClickedBackButton}/>
-                <form onSubmit={this.onSubmitHandler}>
+                <form className='newRecipeForm' onSubmit={this.onSubmitHandler}>
                     <div>
                         <label className='recipeTitleInput Label'>Title</label>
-                        <input value='title' className='Input' onChange={(event) => this.onChangeHandler(event)}/>
+                        <input value='What is the title of your dish?' className='Input' onChange={(event) => this.onChangeHandler(event)}/>
                     </div>
                     <div>
                         <label className='recipeDetailsInput Label'>Recipe</label>
-                        <textarea className='Input' value='recipe' onChange={(event) => this.onChangeHandler(event)}/>
+                        <textarea className='Input' value='Enter ingredients, timing and recipe steps...' onChange={(event) => this.onChangeHandler(event)} rows='10'/>
                     </div>
+                    <PhotoUploader />
 
                 </form>
             </div>
