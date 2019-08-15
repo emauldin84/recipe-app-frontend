@@ -1,11 +1,22 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-const PhotoUploader = () => {
+class PhotoUploader extends Component {
+    handleClick =(e) => {
+        e.preventDefault()
+        this.refs.fileUploader.click();
+}
+
+    render() {
+
     return(
         <div className='photoUploaderContainer'>
-            <button type='submit' className='photoUploadButton'>Add Recipe Photo</button>
+            <input type='file' id='file' ref='fileUploader' style={{ display: 'none'}} />
+            <button className='photoUploadButton' onClick={this.handleClick}>Add Recipe Photo</button>
         </div>
     )
+
+
+    }
 }
 
 export default PhotoUploader
