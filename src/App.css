@@ -63,7 +63,9 @@ ul {
 .recipeContainer {
   margin:20px;
 }
-
+.recipeDetails {
+  text-align: left;
+}
 .arrow {
   position: absolute;
   display: inline-block;

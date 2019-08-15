@@ -13,7 +13,9 @@ const Recipe = (props) => {
                 <div>
                     <h3 >{recipe.recipe_title}</h3>
                     <p>{recipe.recipe_added_date}</p>
-                    <p>{recipe.recipe_details}</p>
+                    <div className='recipeDetails'>
+                        <p>{recipe.recipe_details}</p>
+                    </div>
                 </div>
 
             </div>
