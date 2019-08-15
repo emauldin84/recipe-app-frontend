@@ -37,6 +37,23 @@ ul {
   text-decoration: none;
   color: #FFFFFF;
   font-size: calc(20px + 2vmin);
+  border: 1px solid #FFFFFF;
+  border-radius: 10%;
+  padding: 8px 15px;
+  padding-top: 2px;
+  box-sizing: border-box;
+  display: block;
+  text-align: center;
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.5);
+
+}
+.addRecipe:hover {
+  color: #464a52;
+  background-color: #FFFFFF;
+  border: 1px solid #464a52;
+  transform: scale(1.1);
+  box-shadow: 6px 2px 6px 0px  rgba(0,0,0,0.7);
+
 }
 
 .card:hover, .arrow:hover{
@@ -67,6 +84,11 @@ ul {
   float: left;
   margin-left: 20px;
 }
+.backButton-container:hover {
+  transform: scale(1.15);
+  box-shadow: 6px 2px 6px 0px  rgba(0,0,0,0.7);
+  margin-top: -3px;
+}
 
 
 .cards {
@@ -91,6 +113,8 @@ ul {
 } 
 .card:hover {
   transform: scale(1.05);
+  box-shadow: 6px 2px 6px 0px  rgba(0,0,0,0.7);
+
 }
 .card article {
   min-width: 0;
@@ -167,7 +191,7 @@ textarea {
   background-color: #ccc;
 }
 
-.photoUploadButton {
+.photoUploadButton, .submitButton {
   box-sizing: border-box;
   outline: none;
   color: #464a52;
@@ -178,6 +202,11 @@ textarea {
   padding: 3px 5px;
   display: block;
   font-size: calc(10px + 1vmin);
+}
+
+.photoUploadButton:hover, .submitButton:hover {
+  transform: scale(1.05);
+  box-shadow: 6px 2px 6px 0px  rgba(0,0,0,0.7);
 }
 
 

@@ -5,7 +5,11 @@ import PhotoUploader from '../utils/PhotoUploader'
 
 class AddRecipeForm extends Component {
     state = {
-        newRecipe: null,
+        newRecipe: {
+            title: null,
+            recipe: null,
+            image: null,
+        },
     }
 
     onChangeHandler = (e) => {
@@ -29,6 +33,7 @@ class AddRecipeForm extends Component {
                         <textarea className='Input' value='Enter ingredients, timing and recipe steps...' onChange={(event) => this.onChangeHandler(event)} rows='10'/>
                     </div>
                     <PhotoUploader />
+                    <button type='submit' className='submitButton'>Save</button>
 
                 </form>
             </div>
