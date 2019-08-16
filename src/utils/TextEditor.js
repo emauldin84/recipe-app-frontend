@@ -1,15 +1,34 @@
 import React, { Component } from 'react'
-import { Editor, EditorState, RichUtils } from 'draft-js'
+import { EditorState, RichUtils, convertToRaw } from 'draft-js'
+import Editor from 'draft-js-plugins-editor'
+
+import createHighlightPlugin from './plugins/highlightPlugin'
+import addLinkPlugin from './plugins/addLinkPlugin'
+import BlockStyleToolbar, { getBlockStyle } from './blockStyles/BlockStyleToolbar'
+
+const highlightPlugin = createHighlightPlugin();
+
 
 class TextEditor extends Component {
     state = {
         editorState: EditorState.createEmpty(),
     }
 
+    plugins = [
+        highlightPlugin,
+        addLinkPlugin
+    ]
+
     onChange = (editorState) => {
+        let contentState = this.state.editorState.getCurrentContent()
+        console.log('contentState', contentState)
+        let uploadDetails = {content: convertToRaw(contentState)}
+        console.log('uploadDetails', uploadDetails)
+        uploadDetails["content"] = JSON.stringify(uploadDetails.content)
+
         this.setState({
             editorState
-        })
+        }, this.props.onTextEditorChangeHandler(this.state.editorState, uploadDetails))
     }
 
     handleKeyCommand = (command) => {
@@ -30,6 +49,13 @@ class TextEditor extends Component {
     onItalicClick = () => {
         this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC'))
     }
+    onHighlightClick = () => {
+        this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'HIGHLIGHT'))
+    }
+
+    toggleBlockType = (blockType) => {
+        this.onChange(RichUtils.toggleBlockType(this.state.editorState, blockType))
+    }
 
     render() {
         return (
@@ -37,12 +63,22 @@ class TextEditor extends Component {
                 <button onClick={this.onUnderlineClick}><u>U</u></button>
                 <button onClick={this.onBoldClick}><b>B</b></button>
                 <button onClick={this.onItalicClick}><em>I</em></button>
-                <div className="editors">
-                <Editor 
+                <button className="highlight" onClick={this.onHighlightClick}><span style={{background: 'yellow'}}>H</span></button>
+                <BlockStyleToolbar
                     editorState={this.state.editorState}
-                    handleKeyCommand={this.handleKeyCommand}
-                    onChange={this.onChange}
+                    onToggle={this.toggleBlockType}
                 />
+                <div className="editors">
+                    <Editor 
+                        blockStyleFn={getBlockStyle}
+                        editorState={this.state.editorState}
+                        handleKeyCommand={this.handleKeyCommand}
+                        onChange={this.onChange}
+                        plugins={this.plugins}
+                        placeholder='Enter ingredients, timing and recipe steps...'
+                        spellCheck={true}
+                        readOnly={false}
+                    />
 
                 </div>
             </div>

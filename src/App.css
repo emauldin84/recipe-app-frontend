@@ -176,6 +176,19 @@ h3 {
   padding: 6px 10px;
   display: block;
 }
+
+.editors {
+  width: 80vw;
+  box-sizing: border-box;
+  outline: none;
+  color: #464a52;
+  border: 1px solid #ccc;
+  background-color: white;
+  font: inherit;
+  padding: 6px 10px;
+  display: block;
+  text-align: left;
+}
 .recipeTitleInput {
   margin-top: 20px;
 }
