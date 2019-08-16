@@ -4,6 +4,7 @@ import moment from 'moment'
 
 import BackButton from '../utils/BackButton'
 import PhotoUploader from '../utils/PhotoUploader'
+import TextEditor from '../utils/TextEditor'
 
 class AddRecipeForm extends Component {
     state = {
@@ -78,6 +79,7 @@ class AddRecipeForm extends Component {
                         <label className='recipeTitleInput Label'>Title</label>
                         <input id='title' value={this.state.newRecipe.title} placeholder='What is the title of your dish?' className='Input' onChange={this.onChangeHandler}/>
                     </div>
+
                     <div>
                         <label className='recipeDetailsInput Label'>Recipe</label>
                         <textarea id='details' value={this.state.newRecipe.details}className='Input' placeholder='Enter ingredients, timing and recipe steps...' onChange={this.onChangeHandler} rows='10'/>
@@ -86,6 +88,7 @@ class AddRecipeForm extends Component {
                     <button type='submit' className='submitButton'>Save</button>
 
                 </form>
+                    <TextEditor />
             </div>
         )
 
