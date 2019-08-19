@@ -21,7 +21,7 @@ class TextEditor extends Component {
 
     onChange = (editorState) => {
         let contentState = this.state.editorState.getCurrentContent()
-        let uploadDetails = {content: convertToRaw(contentState)}
+        let uploadDetails = convertToRaw(contentState)
         uploadDetails["content"] = JSON.stringify(uploadDetails.content)
 
         this.setState({

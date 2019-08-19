@@ -36,7 +36,7 @@ clickedRecipeHandler = (recipeId) => {
     console.log(recipe)
     this.setState({
         selectedRecipe: recipe
-    }, () => this.props.history.push(`/recipe/${recipeId}`))
+    }, () => this.props.history.push(`/recipe/${recipeId}`), console.log('clicked recipe handler',this.state.selectedRecipe))
     
 }
 

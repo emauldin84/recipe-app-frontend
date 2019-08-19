@@ -17,9 +17,8 @@ const Recipe = (props) => {
                     <h3 >{recipe.recipe_title}</h3>
                     <p>{recipe.recipe_added_date}</p>
                     <div className='recipeDetails'>
-                        <p>{recipe.recipe_details}</p>
                         <Editor 
-                        editorState={EditorState.createWithContent(convertFromRaw(JSON.parse(recipe.recipe_details.content)))}
+                        editorState={EditorState.createWithContent(convertFromRaw(JSON.parse(recipe.recipe_details)))}
                         readOnly={true}
                     />
                     </div>
@@ -28,6 +27,10 @@ const Recipe = (props) => {
             </div>
         )
     }) : null
+
+    if(recipeData === null){
+        props.history.push('/')
+    }
 
     return(
         <div className='recipeContainer'>
