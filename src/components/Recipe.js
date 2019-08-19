@@ -1,4 +1,6 @@
 import React from 'react'
+import { EditorState, Editor, convertFromRaw } from 'draft-js'
+
 
 import BackButton from '../utils/BackButton'
 
@@ -7,6 +9,7 @@ const Recipe = (props) => {
     console.log('RD',recipeData)
 
     let recipe = recipeData ? recipeData.map(recipe => {
+        console.log(recipe.recipe_details)
         return(
             <div key={recipe.id}>
                 
@@ -15,6 +18,10 @@ const Recipe = (props) => {
                     <p>{recipe.recipe_added_date}</p>
                     <div className='recipeDetails'>
                         <p>{recipe.recipe_details}</p>
+                        <Editor 
+                        editorState={EditorState.createWithContent(convertFromRaw(JSON.parse(recipe.recipe_details.content)))}
+                        readOnly={true}
+                    />
                     </div>
                 </div>
 

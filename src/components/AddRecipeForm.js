@@ -33,7 +33,7 @@ class AddRecipeForm extends Component {
                 details: state,
             },
             detailsForUpload: uploadDetails
-        }, console.log('detailsForUpload: ',this.state.detailsForUpload))
+        })
     }
 
     onSubmitHandler = (e) => {
@@ -42,11 +42,10 @@ class AddRecipeForm extends Component {
         const formData = {
             title: this.state.newRecipe.title,
             date: moment().format('l'),
-            details: this.state.detailsforUpload,
+            details: this.state.detailsForUpload,
             user_id: 3,
         }
-        console.log(this.state.detailsforUpload)
-        console.log(formData)
+        console.log('formData', formData)
         axios.post('/recipes/add-new-recipe', formData)
         // if(this.state.image) {
             // const formData = new FormData()
@@ -63,9 +62,9 @@ class AddRecipeForm extends Component {
             // .catch(err => err)
 
         // }
-        .then(() => {
-            this.props.history.push('/')
-        })
+        // .then(() => {
+        //     this.props.history.push('/')
+        // })
         .catch(err => err)
     }
 
@@ -96,7 +95,7 @@ class AddRecipeForm extends Component {
                         <TextEditor onTextEditorChangeHandler={this.onTextEditorChangeHandler}/>
                     </div>
                     <PhotoUploader handleImageSelect={this.onImageChangeHandler} image={this.state.image}/>
-                    <button type='submit' className='submitButton'>Save</button>
+                    <button type='submit' className='submitButton' onClick={this.onSubmitHandler}>Save</button>
 
                 </form>
             </div>
