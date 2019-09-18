@@ -8,11 +8,11 @@ class PhotoUploader extends Component {
 }
 
     render() {
-        let filePreview = this.props.image ? `${this.props.image}` : null
+        let filePreview = this.props.image ? `${this.props.image.name}` : null
 
     return(
-        <div className='photoUploaderContainer' action="/upload/photo" encType="multipart/form-data" method="POST">
-            <input type='file' id='file' name='recipeImage' accept="image/*" ref='fileUploader' style={{ display: 'none'}} onChange={this.props.handleImageSelect} />
+        <div className='photoUploaderContainer'>
+            <input type='file' id='file' name='photo' accept="image/*" ref='fileUploader' style={{ display: 'none'}} onChange={this.props.handleImageSelect} />
             <button className='photoUploadButton' onClick={this.handleClick}>Add Recipe Photo</button>
             {filePreview}
         </div>

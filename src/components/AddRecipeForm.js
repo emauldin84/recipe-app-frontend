@@ -15,6 +15,7 @@ class AddRecipeForm extends Component {
             user_id: null,
         },
         image: null,
+        imageUrl: null,
         detailsForUpload: null
     }
 
@@ -25,6 +26,11 @@ class AddRecipeForm extends Component {
                 title: e.target.value,
             }
         }, console.log(this.state.newRecipe))
+    }
+    onImageUrlChangeHandler = (e) => {
+        this.setState({
+            imageUrl: e.target.value,
+            })
     }
     onTextEditorChangeHandler = (state, uploadDetails) => {
         this.setState({
@@ -39,43 +45,45 @@ class AddRecipeForm extends Component {
     onSubmitHandler = (e) => {
         e.preventDefault()
 
+        const photoData = new FormData()
+        const file = this.state.image ? this.state.image.name : null
+        photoData.append("photo", file)
+        axios.post({
+            method: 'post',
+            url: '/upload-image',
+            data: photoData,
+            config: { headers: { 'Content-Type': 'multipart/form-data' } }
+        })
+        .then(res => {
+            console.log('response from file upload',res)
+        })
+        .catch(err => err)
+
         const formData = {
             title: this.state.newRecipe.title,
             date: moment().format('l'),
             details: this.state.detailsForUpload,
+            photo: this.state.image ? `/public/uploads/IMAGE-${Date.now()}-${this.state.image.name}` : this.state.imageUrl ? this.state.imageUrl : null,
             user_id: 3,
         }
         console.log('formData', formData)
+        // const data = {'file': this.state.image.name}
+        // console.log("DATA", data)
         axios.post('/recipes/add-new-recipe', formData)
-        // if(this.state.image) {
-            // const formData = new FormData()
-            // formData.append('myImage', this.state.image)
-            // const config = {
-            //     headers: {
-            //         'content-type': 'multipart/form-data'
-            //     }
-            // }
-            // await axios.post('/recipes/upload', formData, config)
-            // .then((response) => {
-            //     console.log('The file was successfully uploaded')
-            // })
-            // .catch(err => err)
-
-        // }
-        // .then(() => {
-        //     this.props.history.push('/')
-        // })
+        // axios.post('/recipes/add-new-recipe', formData)
+        .then(res => {
+            console.log(res)
+            console.log('The file was successfully uploaded')
+            // this.props.history.push('/')
+        })
         .catch(err => err)
+
     }
 
     onImageChangeHandler = (e) => {
-        let image = e.target.files[0].name
         console.log(e.target.files[0])
         this.setState({
-            newRecipe: {
-                ...this.state.newRecipe,
-                image,
-            }
+                image: e.target.files[0],
         })
     }
 
@@ -83,7 +91,7 @@ class AddRecipeForm extends Component {
         return (
             <div className='recipeFormContainer'>
                 <BackButton handleClickedBackButton={this.props.handleClickedBackButton}/>
-                <form className='newRecipeForm' action="/upload/photo" encType="multipart/form-data" method="POST" onSubmit={this.onSubmitHandler}>
+                <form className='newRecipeForm' action='/upload-image' encType="multipart/form-data" method="post" onSubmit={this.onSubmitHandler}>
                     <div>
                         <label className='recipeTitleInput Label'>Title</label>
                         <input id='title' value={this.state.newRecipe.title} placeholder='What is the title of your dish?' className='Input' onChange={this.onTitleChangeHandler}/>
@@ -93,6 +101,10 @@ class AddRecipeForm extends Component {
                         <label className='recipeDetailsInput Label'>Recipe</label>
                         {/* <textarea id='details' value={this.state.newRecipe.details} className='Input' placeholder='Enter ingredients, timing and recipe steps...' onChange={this.onChangeHandler} rows='10'/> */}
                         <TextEditor onTextEditorChangeHandler={this.onTextEditorChangeHandler}/>
+                    </div>
+                    <div>
+                        {/* <label className='recipeTitleInput Label'>Title</label> */}
+                        <input id='imageUrl' value={this.state.newRecipe.imageUrl} placeholder='Image URL' className='Input' onChange={this.onImageUrlChangeHandler}/>
                     </div>
                     <PhotoUploader handleImageSelect={this.onImageChangeHandler} image={this.state.image}/>
                     <button type='submit' className='submitButton' onClick={this.onSubmitHandler}>Save</button>
