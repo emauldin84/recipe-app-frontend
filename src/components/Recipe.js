@@ -16,6 +16,7 @@ const Recipe = (props) => {
                 <div>
                     <h3 >{recipe.recipe_title}</h3>
                     <p>{recipe.recipe_added_date}</p>
+                    <img className='recipeImage'src={recipe.recipe_photo ? recipe.recipe_photo : null} alt="Sample"/>
                     <div className='recipeDetails'>
                         <Editor 
                         editorState={EditorState.createWithContent(convertFromRaw(JSON.parse(recipe.recipe_details)))}

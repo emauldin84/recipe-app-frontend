@@ -143,6 +143,10 @@ ul {
   margin-bottom: -5px;
   text-shadow: 4px 4px 6px  rgba(0,0,0,1);
 }
+.recipeImage {
+  max-width: 50%; 
+  max-height: auto; 
+}
 
 .card:hover > .recipeTitle {
   text-shadow: 4px 4px 4px  rgba(0,0,0,1);
