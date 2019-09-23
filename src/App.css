@@ -214,6 +214,10 @@ textarea {
   background-color: #ccc;
 }
 
+.imageUrlInput {
+  margin-top: 10px;
+}
+
 .photoUploadButton, .submitButton {
   box-sizing: border-box;
   outline: none;

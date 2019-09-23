@@ -45,19 +45,19 @@ class AddRecipeForm extends Component {
     onSubmitHandler = (e) => {
         e.preventDefault()
 
-        const photoData = new FormData()
-        const file = this.state.image ? this.state.image.name : null
-        photoData.append("photo", file)
-        axios.post({
-            method: 'post',
-            url: '/recipes/upload-image',
-            data: photoData,
-            config: { headers: { 'Content-Type': 'multipart/form-data' } }
-        })
-        .then(res => {
-            console.log('response from file upload',res)
-        })
-        .catch(err => err)
+        // const photoData = new FormData()
+        // const file = this.state.image ? this.state.image.name : null
+        // photoData.append("photo", file)
+        // axios.post({
+        //     method: 'post',
+        //     url: '/recipes/upload-image',
+        //     data: photoData,
+        //     config: { headers: { 'Content-Type': 'multipart/form-data' } }
+        // })
+        // .then(res => {
+        //     console.log('response from file upload',res)
+        // })
+        // .catch(err => err)
 
         const formData = {
             title: this.state.newRecipe.title,
@@ -67,17 +67,14 @@ class AddRecipeForm extends Component {
             user_id: 3,
         }
         console.log('formData', formData)
-        // const data = {'file': this.state.image.name}
-        // console.log("DATA", data)
+
         axios.post('/recipes/add-new-recipe', formData)
-        // axios.post('/recipes/add-new-recipe', formData)
         .then(res => {
             console.log(res)
             console.log('The file was successfully uploaded')
-            // this.props.history.push('/')
+            this.props.history.push('/')
         })
         .catch(err => err)
-
     }
 
     onImageChangeHandler = (e) => {
@@ -104,7 +101,7 @@ class AddRecipeForm extends Component {
                     </div>
                     <div>
                         {/* <label className='recipeTitleInput Label'>Title</label> */}
-                        <input id='imageUrl' value={this.state.newRecipe.imageUrl} placeholder='Image URL' className='Input' onChange={this.onImageUrlChangeHandler}/>
+                        <input id='imageUrl' value={this.state.newRecipe.imageUrl} placeholder='Image URL' className='Input imageUrlInput' onChange={this.onImageUrlChangeHandler}/>
                     </div>
                     {/* <PhotoUploader handleImageSelect={this.onImageChangeHandler} image={this.state.image}/> */}
                     <button type='submit' className='submitButton' onClick={this.onSubmitHandler}>Save</button>
