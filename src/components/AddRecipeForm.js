@@ -3,7 +3,7 @@ import axios from 'axios'
 import moment from 'moment'
 
 import BackButton from '../utils/BackButton'
-import PhotoUploader from '../utils/PhotoUploader'
+// import PhotoUploader from '../utils/PhotoUploader'
 import TextEditor from '../utils/TextEditor'
 
 class AddRecipeForm extends Component {
@@ -50,7 +50,7 @@ class AddRecipeForm extends Component {
         photoData.append("photo", file)
         axios.post({
             method: 'post',
-            url: '/upload-image',
+            url: '/recipes/upload-image',
             data: photoData,
             config: { headers: { 'Content-Type': 'multipart/form-data' } }
         })
@@ -63,7 +63,7 @@ class AddRecipeForm extends Component {
             title: this.state.newRecipe.title,
             date: moment().format('l'),
             details: this.state.detailsForUpload,
-            photo: this.state.image ? `/public/uploads/IMAGE-${Date.now()}-${this.state.image.name}` : this.state.imageUrl ? this.state.imageUrl : null,
+            photo: this.state.image ? `public/uploads/IMAGE-${Date.now()}-${this.state.image.name}` : this.state.imageUrl ? this.state.imageUrl : null,
             user_id: 3,
         }
         console.log('formData', formData)
@@ -91,7 +91,7 @@ class AddRecipeForm extends Component {
         return (
             <div className='recipeFormContainer'>
                 <BackButton handleClickedBackButton={this.props.handleClickedBackButton}/>
-                <form className='newRecipeForm' action='/upload-image' encType="multipart/form-data" method="post" onSubmit={this.onSubmitHandler}>
+                <form action='/recipes/add-new-recipe' className='newRecipeForm' encType="multipart/form-data" method="post" onSubmit={this.onSubmitHandler}>
                     <div>
                         <label className='recipeTitleInput Label'>Title</label>
                         <input id='title' value={this.state.newRecipe.title} placeholder='What is the title of your dish?' className='Input' onChange={this.onTitleChangeHandler}/>
@@ -106,7 +106,7 @@ class AddRecipeForm extends Component {
                         {/* <label className='recipeTitleInput Label'>Title</label> */}
                         <input id='imageUrl' value={this.state.newRecipe.imageUrl} placeholder='Image URL' className='Input' onChange={this.onImageUrlChangeHandler}/>
                     </div>
-                    <PhotoUploader handleImageSelect={this.onImageChangeHandler} image={this.state.image}/>
+                    {/* <PhotoUploader handleImageSelect={this.onImageChangeHandler} image={this.state.image}/> */}
                     <button type='submit' className='submitButton' onClick={this.onSubmitHandler}>Save</button>
 
                 </form>
