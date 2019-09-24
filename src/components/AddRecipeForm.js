@@ -77,12 +77,12 @@ class AddRecipeForm extends Component {
         .catch(err => err)
     }
 
-    onImageChangeHandler = (e) => {
-        console.log(e.target.files[0])
-        this.setState({
-                image: e.target.files[0],
-        })
-    }
+    // onImageChangeHandler = (e) => {
+    //     console.log(e.target.files[0])
+    //     this.setState({
+    //             image: e.target.files[0],
+    //     })
+    // }
 
     render() {
         return (
