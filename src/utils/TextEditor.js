@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import { EditorState, RichUtils, convertToRaw } from 'draft-js'
-import Editor from 'draft-js-plugins-editor'
+import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js'
+import 'draft-js/dist/Draft.css'
+// import Editor from 'draft-js-plugins-editor'
 
-import createHighlightPlugin from './plugins/highlightPlugin'
-import addLinkPlugin from './plugins/addLinkPlugin'
+// import createHighlightPlugin from './plugins/highlightPlugin'
+// import addLinkPlugin from './plugins/addLinkPlugin'
 import BlockStyleToolbar, { getBlockStyle } from './blockStyles/BlockStyleToolbar'
 
-const highlightPlugin = createHighlightPlugin();
+// const highlightPlugin = createHighlightPlugin();
 
 
 class TextEditor extends Component {
@@ -14,10 +15,10 @@ class TextEditor extends Component {
         editorState: EditorState.createEmpty(),
     }
 
-    plugins = [
-        highlightPlugin,
-        addLinkPlugin
-    ]
+    // plugins = [
+    //     highlightPlugin,
+    //     addLinkPlugin
+    // ]
 
     onChange = (editorState) => {
         let contentState = this.state.editorState.getCurrentContent()
@@ -50,34 +51,35 @@ class TextEditor extends Component {
         e.preventDefault()
         this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC'))
     }
-    onHighlightClick = (e) => {
-        e.preventDefault()
-        this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'HIGHLIGHT'))
-    }
+    // onHighlightClick = (e) => {
+    //     e.preventDefault()
+    //     this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'HIGHLIGHT'))
+    // }
 
-    toggleBlockType = (e, blockType) => {
-        e.preventDefault()
+    toggleBlockType = (blockType) => {
         this.onChange(RichUtils.toggleBlockType(this.state.editorState, blockType))
     }
 
     render() {
         return (
             <div>
-                <button onClick={this.onUnderlineClick} title='underline'><u>U</u></button>
-                <button onClick={this.onBoldClick} title='bold'><b>B</b></button>
-                <button onClick={this.onItalicClick} title='italics'><em>I</em></button>
-                <button className="highlight" onClick={this.onHighlightClick} title='highlight'><span style={{background: 'yellow'}}>H</span></button>
-                <BlockStyleToolbar
-                    editorState={this.state.editorState}
-                    onToggle={this.toggleBlockType}
-                />
+                <div className='styleToolBar'>
+                    <button onClick={this.onUnderlineClick} title='underline'><u>U</u></button>
+                    <button onClick={this.onBoldClick} title='bold'><b>B</b></button>
+                    <button onClick={this.onItalicClick} title='italics'><em>I</em></button>
+                    {/* <button className="highlight" onClick={this.onHighlightClick} title='highlight'><span style={{background: 'yellow'}}>H</span></button> */}
+                    <BlockStyleToolbar
+                        editorState={this.state.editorState}
+                        onToggle={this.toggleBlockType}
+                    />
+                </div>
                 <div className="editors">
                     <Editor 
                         blockStyleFn={getBlockStyle}
                         editorState={this.state.editorState}
                         handleKeyCommand={this.handleKeyCommand}
                         onChange={this.onChange}
-                        plugins={this.plugins}
+                        // plugins={this.plugins}
                         placeholder='Enter ingredients, timing and recipe steps...'
                         spellCheck={true}
                         readOnly={false}

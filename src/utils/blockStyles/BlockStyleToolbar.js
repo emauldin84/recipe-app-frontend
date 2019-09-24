@@ -36,11 +36,11 @@ class BlockStyleToolbar extends React.Component {
         .getType();
         
         return (
-        <div>
+        <div className='blockStyleToolbar'>
         <span className="RichEditor-controls">
             <HeaderStyleDropdown
             headerOptions={BLOCK_TYPE_HEADINGS}
-            active={blockType}
+            active={blockType}s
             onToggle={this.props.onToggle}
             />
             

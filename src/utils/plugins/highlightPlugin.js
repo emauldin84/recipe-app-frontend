@@ -3,7 +3,7 @@ import { RichUtils } from "draft-js";
 export default () => {
     return {
         customStyleMap: {
-        HIGHLIGHT: {
+        'HIGHLIGHT': {
             background: "#fffe0d"
             }
         },
