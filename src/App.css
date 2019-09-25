@@ -147,6 +147,11 @@ ul {
   max-width: 50%; 
   max-height: auto; 
 }
+.recipeAddedDate {
+  font-size: calc(5px + 1.5vmin);
+  margin-block-start: .0;
+  color: #ccc;
+}
 
 .card:hover > .recipeTitle {
   text-shadow: 4px 4px 4px  rgba(0,0,0,1);

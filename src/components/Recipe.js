@@ -1,6 +1,6 @@
 import React from 'react'
 import { EditorState, Editor, convertFromRaw } from 'draft-js'
-
+import moment from 'moment'
 
 import BackButton from '../utils/BackButton'
 
@@ -16,9 +16,8 @@ const Recipe = (props) => {
             <div key={recipe.id}>
                 
                 <div>
-                    <h3 >{recipe.recipe_title}</h3>
-                    <p>{recipe.recipe_added_date}</p>
-                    {/* <img className='recipeImage'src={recipe.recipe_photo ? recipe.recipe_photo : null} alt="Sample"/> */}
+                    <h3>{recipe.recipe_title}</h3>
+                    <p className='recipeAddedDate'><b>Recipe added:</b> {moment(recipe.recipe_added_date).format('LL')}</p>
                     {image}
                     <div className='recipeDetails'>
                         <Editor 
