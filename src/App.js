@@ -15,6 +15,7 @@ class App extends Component {
   state = {
     recipes: null,
     selectedRecipe: null,
+    editedDetails: null,
 }
 
 componentDidMount() {
@@ -22,8 +23,6 @@ componentDidMount() {
 }
 
 componentDidUpdate(prevProps, prevState) {
-  console.log('PREV', prevState.recipes)
-  console.log('THIS', this.state.recipes)
   if(prevState.recipes !== null && prevState.recipes === this.state.recipes) {
     this.handleGetRecipes()
   }
@@ -59,6 +58,13 @@ clickedBackButtonHandler = () => {
   this.props.history.goBack()
 }
 
+onTextEditorChangeHandlerEdit = (editedDetails) => {
+  // onTextEditorChangeHandler = (state, uploadDetails) => {
+      this.setState({
+          editedDetails
+      })
+    }
+
   render() {
     let routes = (
       <div>
@@ -69,7 +75,9 @@ clickedBackButtonHandler = () => {
             render={(props) => <Recipe 
                             {...props} 
                             selectedRecipe={this.state.selectedRecipe}
-                            handleClickedBackButton={this.clickedBackButtonHandler}/>} />
+                            editedDetails={this.state.editedDetails}
+                            handleClickedBackButton={this.clickedBackButtonHandler}
+                            onTextEditorChangeHandlerEdit={this.onTextEditorChangeHandlerEdit}/>} />
           <Route
             path='/new-recipe'
             render={(props) => <AddRecipeForm

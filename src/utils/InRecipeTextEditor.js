@@ -12,7 +12,7 @@ import BlockStyleToolbar, { getBlockStyle } from './blockStyles/BlockStyleToolba
 
 class TextEditor extends Component {
     state = {
-        editorState: EditorState.createEmpty(),
+        editorState: this.props.editedDetails,
     }
 
     // plugins = [
@@ -27,7 +27,7 @@ class TextEditor extends Component {
 
         this.setState({
             editorState
-        }, this.props.onTextEditorChangeHandler(uploadDetails))
+        }, this.props.onTextEditorChangeHandlerEdit(uploadDetails))
         // }, this.props.onTextEditorChangeHandler(this.state.editorState, uploadDetails))
     }
 

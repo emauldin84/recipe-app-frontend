@@ -33,12 +33,13 @@ class AddRecipeForm extends Component {
             imageUrl: e.target.value,
             })
     }
-    onTextEditorChangeHandler = (state, uploadDetails) => {
+    onTextEditorChangeHandler = (uploadDetails) => {
+    // onTextEditorChangeHandler = (state, uploadDetails) => {
         this.setState({
-            newRecipe: {
-                ...this.state.newRecipe,
-                details: state,
-            },
+            // newRecipe: {
+            //     ...this.state.newRecipe,
+            //     details: state,
+            // },
             detailsForUpload: uploadDetails
         })
     }
@@ -65,13 +66,14 @@ class AddRecipeForm extends Component {
             date: moment().format('l'),
             details: this.state.detailsForUpload,
             photo: this.state.image ? `public/uploads/IMAGE-${Date.now()}-${this.state.image.name}` : this.state.imageUrl ? this.state.imageUrl : null,
+            // retrieve user_id from JWT?
             user_id: 3,
         }
         console.log('formData', formData)
 
         axios.post('/recipes/add-new-recipe', formData)
         .then(res => {
-            console.log(res.data.redirect)
+            console.log(res.data)
             console.log('The file was successfully uploaded')
             
             this.props.history.push('/')
@@ -88,13 +90,14 @@ class AddRecipeForm extends Component {
     // }
 
     render() {
+        console.log('DETAILS FOR UPLOAD', this.state.detailsForUpload)
         return (
             <div className='recipeFormContainer'>
                 <BackButton handleClickedBackButton={this.props.handleClickedBackButton}/>
                 <form action='/recipes/add-new-recipe' className='newRecipeForm' encType="multipart/form-data" method="post" onSubmit={this.onSubmitHandler}>
                     <div>
                         <label className='recipeTitleInput Label'>Title</label>
-                        <input id='title' value={this.state.newRecipe.title} placeholder='What is the title of your dish?' className='Input' onChange={this.onTitleChangeHandler}/>
+                        <input id='title' value={this.state.newRecipe.title} placeholder='What is the title of your dish?' className='Input' onChange={this.onTitleChangeHandler} type="text" required/>
                     </div>
 
                     <div>
@@ -108,7 +111,7 @@ class AddRecipeForm extends Component {
                         <input id='imageUrl' value={this.state.newRecipe.imageUrl} placeholder='Enter image URL' className='Input imageUrlInput' onChange={this.onImageUrlChangeHandler}/>
                     </div>
                     {/* <PhotoUploader handleImageSelect={this.onImageChangeHandler} image={this.state.image}/> */}
-                    <button type='submit' className='submitButton' onClick={this.onSubmitHandler}>Save</button>
+                    <button type='submit' className='submitButton' >Save</button>
 
                 </form>
             </div>
