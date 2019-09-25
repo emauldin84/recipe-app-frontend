@@ -111,7 +111,7 @@ class AddRecipeForm extends Component {
                         <input id='imageUrl' value={this.state.newRecipe.imageUrl} placeholder='Enter image URL' className='Input imageUrlInput' onChange={this.onImageUrlChangeHandler}/>
                     </div>
                     {/* <PhotoUploader handleImageSelect={this.onImageChangeHandler} image={this.state.image}/> */}
-                    <button type='submit' className='submitButton' >Save</button>
+                    <button type='submit' className='submitButton'>Save</button>
 
                 </form>
             </div>
