@@ -116,6 +116,7 @@ ul {
   padding: 20px;
   align-items: center;
   height: 15vh;
+  background-color: #464a52;
 } 
 .card:hover {
   transform: scale(1.05);
@@ -245,8 +246,19 @@ textarea {
   display: block;
   font-size: calc(10px + 1vmin);
 }
+.editButton, .saveButton {
+  box-sizing: border-box;
+  outline: none;
+  color: #464a52;
+  border: 1px solid #ccc;
+  background-color: white;
+  font: inherit;
+  margin: 10px;
+  padding: 3px 5px;
+  font-size: calc(10px + 1vmin);
+}
 
-.photoUploadButton:hover, .submitButton:hover {
+.photoUploadButton:hover, .submitButton:hover, .editButton:hover, .saveButton:hover {
   transform: scale(1.05);
   box-shadow: 6px 2px 6px 0px  rgba(0,0,0,0.7);
 }

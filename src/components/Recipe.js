@@ -11,6 +11,18 @@ class Recipe extends Component {
         editing: false
     }
 
+    onEditHandler = () => {
+        this.setState({
+            editing: !this.state.editing,
+        })
+    }
+
+    onSaveHandler = (e) => {
+        e.preventDefault()
+
+        // BUILD THIS OUT
+    }
+
     render() {
         console.log('editedDetails',this.props.editedDetails)
         const recipeData = this.props.selectedRecipe
@@ -32,6 +44,8 @@ class Recipe extends Component {
                 <div key={recipe.id}>
                     
                     <div>
+                        <button class='editButton' onClick={this.onEditHandler}>{this.state.editing ? 'Discard Changes' : 'Edit'}</button>
+                        <button class='saveButton' style={this.state.editing ? null : { display: 'none' }} onClick={this.onSaveHandler}>Save Changes</button>
                         <h3>{recipe.recipe_title}</h3>
                         <p className='recipeAddedDate'><b>Recipe added:</b> {moment(recipe.recipe_added_date).format('LL')}</p>
                         {image}
