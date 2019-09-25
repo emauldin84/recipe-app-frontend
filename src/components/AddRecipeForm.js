@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import axios from 'axios'
 import moment from 'moment'
 
+
 import BackButton from '../utils/BackButton'
 // import PhotoUploader from '../utils/PhotoUploader'
 import TextEditor from '../utils/TextEditor'
@@ -70,9 +71,11 @@ class AddRecipeForm extends Component {
 
         axios.post('/recipes/add-new-recipe', formData)
         .then(res => {
-            console.log(res)
+            console.log(res.data.redirect)
             console.log('The file was successfully uploaded')
+            
             this.props.history.push('/')
+
         })
         .catch(err => err)
     }
@@ -101,7 +104,8 @@ class AddRecipeForm extends Component {
                     </div>
                     <div>
                         {/* <label className='recipeTitleInput Label'>Title</label> */}
-                        <input id='imageUrl' value={this.state.newRecipe.imageUrl} placeholder='Image URL' className='Input imageUrlInput' onChange={this.onImageUrlChangeHandler}/>
+                        <label className='recipeTitleInput Label'>Image</label>
+                        <input id='imageUrl' value={this.state.newRecipe.imageUrl} placeholder='Enter image URL' className='Input imageUrlInput' onChange={this.onImageUrlChangeHandler}/>
                     </div>
                     {/* <PhotoUploader handleImageSelect={this.onImageChangeHandler} image={this.state.image}/> */}
                     <button type='submit' className='submitButton' onClick={this.onSubmitHandler}>Save</button>

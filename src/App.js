@@ -18,15 +18,29 @@ class App extends Component {
 }
 
 componentDidMount() {
-    axios.get(`/recipes/allrecipes`)
+    this.handleGetRecipes()
+}
+
+componentDidUpdate(prevProps, prevState) {
+  console.log('PREV', prevState.recipes)
+  console.log('THIS', this.state.recipes)
+  if(prevState.recipes !== null && prevState.recipes === this.state.recipes) {
+    this.handleGetRecipes()
+  }
+
+}
+
+handleGetRecipes() {
+  axios.get(`/recipes/allrecipes`)
     .then(res => {
+      if(res.data !== this.state.recipes){
         const recipesData = res.data
         this.setState({
             recipes: recipesData,
         })
+      }
     })
     .catch (err => err)
-    
 }
 
 clickedRecipeHandler = (recipeId) => {
