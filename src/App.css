@@ -49,7 +49,7 @@ ul {
   display: block;
   text-align: center;
   box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.5);
-
+  transition: all .2s ease-in-out;
 }
 .addRecipe:hover {
   color: #464a52;
@@ -117,6 +117,8 @@ ul {
   align-items: center;
   height: 15vh;
   background-color: #464a52;
+  transition: all .2s ease-in-out;
+
 } 
 .card:hover {
   transform: scale(1.05);
@@ -245,6 +247,7 @@ textarea {
   padding: 3px 5px;
   display: block;
   font-size: calc(10px + 1vmin);
+  transition: all .2s ease-in-out;
 }
 .editButton, .saveButton {
   box-sizing: border-box;
@@ -256,6 +259,8 @@ textarea {
   margin: 10px;
   padding: 3px 5px;
   font-size: calc(10px + 1vmin);
+  transition: all .2s ease-in-out;
+
 }
 
 .photoUploadButton:hover, .submitButton:hover, .editButton:hover, .saveButton:hover {

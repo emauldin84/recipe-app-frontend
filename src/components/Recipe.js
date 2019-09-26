@@ -24,8 +24,11 @@ class Recipe extends Component {
 
     onSaveHandler = (e) => {
         e.preventDefault()
+        // console.log('EDITED DETAILS FOR UPLOAD',this.state.detailsForUpload)
+        console.log('EDITED DETAILS FOR UPLOAD',this.props.editedDetails)
 
         // FINISH BUILDING THIS OUT
+        // this.state.detailsForUpload are showing 'null'
 
         const formData = {
             title: this.state.title,
@@ -46,6 +49,20 @@ class Recipe extends Component {
         })
         .catch(err => err)
     }
+    // UPDATE FOR THIS COMPONENT
+    // onTitleChangeHandler = (e) => {
+    //     this.setState({
+    //         newRecipe: {
+    //             ...this.state.newRecipe,
+    //             title: e.target.value,
+    //         }
+    //     }, console.log(this.state.newRecipe))
+    // }
+    // onImageUrlChangeHandler = (e) => {
+    //     this.setState({
+    //         imageUrl: e.target.value,
+    //         })
+    // }
 
     render() {
         console.log('editedDetails',this.props.editedDetails)
