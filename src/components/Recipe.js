@@ -10,7 +10,7 @@ import BackButton from '../utils/BackButton'
 class Recipe extends Component {
     state = {
         editing: false,
-        title: 'THIS HAS BEEN EDITED',
+        title: null,
         detailsForUpload: null,
         image: null,
         imageUrl: null,
@@ -43,7 +43,7 @@ class Recipe extends Component {
         // this.state.detailsForUpload are showing 'null'
 
         const formData = {
-            title: this.state.title,
+            title: this.state.title !== null ? this.state.title : this.props.selectedRecipe[0].recipe_title,
             details: this.state.detailsForUpload !== null ? this.state.detailsForUpload : this.props.selectedRecipe[0].recipe_details,
             photo: this.state.imageUrl !== null ? this.state.imageUrl : this.props.selectedRecipe[0].recipe_photo,
         }
@@ -65,9 +65,8 @@ class Recipe extends Component {
     }
     // UPDATE FOR THIS COMPONENT
     onTitleChangeHandler = (e) => {
-        console.log('event value', e.target.textContent)
         this.setState({
-            title: e.target.textContent,
+            title: e.target.value,
         })
     }
     onImageUrlChangeHandler = (e) => {
@@ -91,7 +90,23 @@ class Recipe extends Component {
                                                     editorState={EditorState.createWithContent(convertFromRaw(JSON.parse(recipe.recipe_details)))}
                                                     readOnly={true}
                                                 />
-            const image = recipe.recipe_photo ? this.state.editing ? <input id='imageUrl' defaultValue={recipe.recipe_photo} className='Input imageUrlInput' onChange={this.onImageUrlChangeHandler}/> : <img className='recipeImage'src={recipe.recipe_photo} alt="Sample"/>  : null
+            // const image = recipe.recipe_photo || !recipe.recipe_photo ? this.state.editing ? <input id='imageUrl' defaultValue={recipe.recipe_photo} className='Input imageUrlInput' onChange={this.onImageUrlChangeHandler}/> : <img className='recipeImage'src={recipe.recipe_photo} alt="Sample"/>  : recipe.recipe_photo ? <img className='recipeImage'src={recipe.recipe_photo} alt="Sample"/> : null
+
+            const title = this.state.editing ? <input id='title' defaultValue={recipe.recipe_title} placeholder='What is the title of your dish?' className='Input' onChange={this.onTitleChangeHandler} type="text" required/> : <h3>{recipe.recipe_title}</h3>
+                        
+            let image = null
+            if (recipe.recipe_photo || !recipe.recipe_photo) {
+                if (this.state.editing) {
+                    image = <input id='imageUrl' placeholder='Enter image URL' defaultValue={recipe.recipe_photo} className='Input imageUrlInput' onChange={this.onImageUrlChangeHandler}/>
+                } else {
+                    if(recipe.recipe_photo) {
+                        image = <img className='recipeImage'src={recipe.recipe_photo} alt="Sample"/>
+                    } else {
+                        image = null
+                    }
+                }
+            }
+
             // console.log('RECIPE DETAILS', recipe.recipe_details)
             return(
                 <div key={recipe.id}>
@@ -100,16 +115,16 @@ class Recipe extends Component {
                             <button className='editButton' onClick={this.onEditHandler}>{this.state.editing ? 'Discard Changes' : 'Edit'}</button>
                         <form action={`/recipes/edit/${this.props.selectedRecipe[0].id}`} className='editRecipeForm' encType="multipart/form-data" method="post" onSubmit={this.onSaveHandler}>
                             <button className='saveButton' style={this.state.editing ? null : { display: 'none' }}>Save Changes</button>
-
-                            <h3 contentEditable={this.state.editing} suppressContentEditableWarning={true} onChange={this.onTitleChangeHandler}>{recipe.recipe_title}</h3>
+                            {title}
+                            {/* <h3 contentEditable={this.state.editing} suppressContentEditableWarning={true} onChange={this.onTitleChangeHandler}>{recipe.recipe_title}</h3> */}
                             <p className='recipeAddedDate'><b>Recipe added:</b> {moment(recipe.recipe_added_date).format('LL')}</p>
                             {image}
                             <div className='recipeDetails'>
-                            {/* <Editor 
-                            editorState={EditorState.createWithContent(convertFromRaw(JSON.parse(recipe.recipe_details)))}
-                            readOnly={true}
-                            /> */}
-                            {details}
+                                {/* <Editor 
+                                editorState={EditorState.createWithContent(convertFromRaw(JSON.parse(recipe.recipe_details)))}
+                                readOnly={true}
+                                /> */}
+                                {details}
                             </div>
                         </form>
                     </div>
