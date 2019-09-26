@@ -19,6 +19,7 @@ class App extends Component {
 }
 
 componentDidMount() {
+  console.log('edited details from APP',this.state.editedDetails)
     this.handleGetRecipes()
 }
 
@@ -46,7 +47,7 @@ clickedRecipeHandler = (recipeId) => {
     let recipe = this.state.recipes.filter(rec => {
         return rec.id === recipeId
     })
-    console.log(recipe)
+    console.log('Clicked Recipe',recipe)
     this.setState({
         selectedRecipe: recipe
     }, () => this.props.history.push(`/recipe/${recipeId}`), console.log('clicked recipe handler',this.state.selectedRecipe))
@@ -59,10 +60,9 @@ clickedBackButtonHandler = () => {
 }
 
 onTextEditorChangeHandlerEdit = (editedDetails) => {
-  // onTextEditorChangeHandler = (state, uploadDetails) => {
       this.setState({
           editedDetails
-      })
+      }, console.log('this.state.editedDetails from App', this.state.editedDetails))
     }
 
   render() {

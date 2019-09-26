@@ -10,8 +10,8 @@ import BackButton from '../utils/BackButton'
 class Recipe extends Component {
     state = {
         editing: false,
-        title: null,
-        detailsForUpload: this.props.editedDetails,
+        title: 'THIS HAS BEEN EDITED',
+        detailsForUpload: null,
         image: null,
         imageUrl: null,
     }
@@ -22,11 +22,23 @@ class Recipe extends Component {
         })
     }
 
-    onSaveHandler = (e) => {
-        e.preventDefault()
-        // console.log('EDITED DETAILS FOR UPLOAD',this.state.detailsForUpload)
-        console.log('EDITED DETAILS FOR UPLOAD',this.props.editedDetails)
+    setStateDetailsForUpload = () => {
+        this.setState({
+            detailsForUpload: this.props.editedDetails,
+        })
+    }
 
+    // onTextEditorChangeHandler = (uploadDetails) => {
+    //         this.setState({
+    //             detailsForUpload: uploadDetails
+    //         })
+    //     }
+
+    onSaveHandler = async (e) => {
+        e.preventDefault()
+        await this.setStateDetailsForUpload()
+        console.log('STATE DETAILS FOR UPLOAD',this.state.detailsForUpload)
+        console.log('EDITED DETAILS FOR UPLOAD',this.props.editedDetails)
         // FINISH BUILDING THIS OUT
         // this.state.detailsForUpload are showing 'null'
 
@@ -37,27 +49,26 @@ class Recipe extends Component {
         }
         console.log('formData', formData)
 
-        axios.post(`/recipes/edit/${this.props.selectedRecipe.id}`, formData)
+        await axios.post(`/recipes/edit/${this.props.selectedRecipe[0].id}`, formData)
         .then(res => {
-            console.log(res.data)
+            console.log('Response Data', res.data)
             console.log('The file was successfully uploaded')
             
             this.setState({
                 editing: false,
             })
+            this.props.history.push('/')
 
         })
         .catch(err => err)
     }
     // UPDATE FOR THIS COMPONENT
-    // onTitleChangeHandler = (e) => {
-    //     this.setState({
-    //         newRecipe: {
-    //             ...this.state.newRecipe,
-    //             title: e.target.value,
-    //         }
-    //     }, console.log(this.state.newRecipe))
-    // }
+    onTitleChangeHandler = (e) => {
+        console.log('event value', e.target.textContent)
+        this.setState({
+            title: e.target.textContent,
+        })
+    }
     // onImageUrlChangeHandler = (e) => {
     //     this.setState({
     //         imageUrl: e.target.value,
@@ -65,9 +76,9 @@ class Recipe extends Component {
     // }
 
     render() {
-        console.log('editedDetails',this.props.editedDetails)
+        // console.log('editedDetails',this.props.editedDetails)
         const recipeData = this.props.selectedRecipe
-        console.log('RD',recipeData)
+        // console.log('RD',recipeData)
 
         
         let recipe = recipeData ? recipeData.map(recipe => {
@@ -80,16 +91,16 @@ class Recipe extends Component {
                                                     readOnly={true}
                                                 />
             const image = recipe.recipe_photo ? <img className='recipeImage'src={recipe.recipe_photo} alt="Sample"/>  : null
-            console.log('RECIPE DETAILS', recipe.recipe_details)
+            // console.log('RECIPE DETAILS', recipe.recipe_details)
             return(
                 <div key={recipe.id}>
                     
                     <div>
-                        <form action={`/recipes/edit/${this.props.selectedRecipe.id}`} className='editRecipeForm' encType="multipart/form-data" method="post" onSubmit={this.onSaveHandler}>
+                            <button className='editButton' onClick={this.onEditHandler}>{this.state.editing ? 'Discard Changes' : 'Edit'}</button>
+                        <form action={`/recipes/edit/${this.props.selectedRecipe[0].id}`} className='editRecipeForm' encType="multipart/form-data" method="post" onSubmit={this.onSaveHandler}>
+                            <button className='saveButton' style={this.state.editing ? null : { display: 'none' }}>Save Changes</button>
 
-                            <button class='editButton' onClick={this.onEditHandler}>{this.state.editing ? 'Discard Changes' : 'Edit'}</button>
-                            <button class='saveButton' style={this.state.editing ? null : { display: 'none' }}>Save Changes</button>
-                            <h3>{recipe.recipe_title}</h3>
+                            <h3 contentEditable={this.state.editing} suppressContentEditableWarning={true} onChange={this.onTitleChangeHandler}>{recipe.recipe_title}</h3>
                             <p className='recipeAddedDate'><b>Recipe added:</b> {moment(recipe.recipe_added_date).format('LL')}</p>
                             {image}
                             <div className='recipeDetails'>
