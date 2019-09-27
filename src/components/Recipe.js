@@ -22,6 +22,18 @@ class Recipe extends Component {
         })
     }
 
+    deleteHandler = async () => {
+        let confirmation = window.confirm('Are you sure you would like to delete this recipe? This cannot be undone.')
+        if (confirmation) {
+            await axios.delete(`/recipes/delete-recipe/${this.props.selectedRecipe[0].id}`)
+            .then(res => {
+                console.log('successfully delete', res.data)
+                this.props.history.push(`/`)
+                }
+            )
+        }
+    }
+
     setStateDetailsForUpload = () => {
         this.setState({
             detailsForUpload: this.props.editedDetails,
@@ -113,6 +125,7 @@ class Recipe extends Component {
                     
                     <div>
                             <button className='editButton' onClick={this.onEditHandler}>{this.state.editing ? 'Discard Changes' : 'Edit'}</button>
+                            <button className='deleteButton' onClick={this.deleteHandler}>Delete</button>
                         <form action={`/recipes/edit/${this.props.selectedRecipe[0].id}`} className='editRecipeForm' encType="multipart/form-data" method="post" onSubmit={this.onSaveHandler}>
                             <button className='saveButton' style={this.state.editing ? null : { display: 'none' }}>Save Changes</button>
                             {title}

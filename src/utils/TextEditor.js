@@ -84,6 +84,7 @@ class TextEditor extends Component {
                         placeholder='Enter ingredients, timing and recipe steps...'
                         spellCheck={true}
                         readOnly={false}
+                        required={true}
                     />
 
                 </div>
