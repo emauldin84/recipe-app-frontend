@@ -7,6 +7,7 @@ import InRecipeTextEditor from '../utils/InRecipeTextEditor'
 import BackButton from '../utils/BackButton'
 
 
+
 class Recipe extends Component {
     state = {
         editing: false,
@@ -124,10 +125,15 @@ class Recipe extends Component {
                 <div key={recipe.id}>
                     
                     <div>
+                        <div className='button-container'>
                             <button className='editButton' onClick={this.onEditHandler}>{this.state.editing ? 'Discard Changes' : 'Edit'}</button>
-                            <button className='deleteButton' onClick={this.deleteHandler}>Delete</button>
+                            {/* <img src={require('../media/iconfinder_save_326688.png')} className='editButton' onClick={this.onEditHandler} /> */}
+                            <button className='deleteButton' onClick={this.deleteHandler} style={!this.state.editing ? null : { display: 'none' }}>Delete</button>
+                        </div>
                         <form action={`/recipes/edit/${this.props.selectedRecipe[0].id}`} className='editRecipeForm' encType="multipart/form-data" method="post" onSubmit={this.onSaveHandler}>
-                            <button className='saveButton' style={this.state.editing ? null : { display: 'none' }}>Save Changes</button>
+                            <div className='saveButtonContainer'>
+                                <button className='saveButton' style={this.state.editing ? null : { display: 'none' }}>Save Changes</button>
+                            </div>
                             {title}
                             {/* <h3 contentEditable={this.state.editing} suppressContentEditableWarning={true} onChange={this.onTitleChangeHandler}>{recipe.recipe_title}</h3> */}
                             <p className='recipeAddedDate'><b>Recipe added:</b> {moment(recipe.recipe_added_date).format('LL')}</p>
@@ -151,9 +157,12 @@ class Recipe extends Component {
         }
     
         return(
-            <div className='recipeContainer'>
+            <div>
                 <BackButton handleClickedBackButton={this.props.handleClickedBackButton}/>
+
+            <div className='recipeContainer'>
                 {recipe}
+            </div>
             </div>
         )
 

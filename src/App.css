@@ -66,9 +66,13 @@ ul {
 
 .recipeContainer {
   margin:20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .recipeDetails {
-  text-align: left;
+  /* margin-left: calc(10px + 5vmin); */
+  max-width: 90%;
 }
 .arrow {
   position: absolute;
@@ -197,6 +201,7 @@ h3 {
 }
 .blockStyleToolbar{
   margin-bottom: 10px;
+  /* width: 80vw; */
 }
 .editors {
   width: 80vw;
@@ -236,6 +241,17 @@ textarea {
   margin-top: 10px;
 }
 
+.button-container{
+  /* position: fixed; */
+  display: flex;
+  float: right;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: -30px;
+  /* padding-right: -10px; */
+}
+
 .photoUploadButton, .submitButton {
   box-sizing: border-box;
   outline: none;
@@ -249,21 +265,32 @@ textarea {
   font-size: calc(10px + 1vmin);
   transition: all .2s ease-in-out;
 }
-.editButton, .saveButton {
+.editButton, .saveButton, .deleteButton {
   box-sizing: border-box;
   outline: none;
   color: #464a52;
   border: 1px solid #ccc;
   background-color: white;
   font: inherit;
-  margin: 10px;
+  margin: 7px;
   padding: 3px 5px;
   font-size: calc(10px + 1vmin);
   transition: all .2s ease-in-out;
+  max-width: 180px;
 
 }
+.saveButtonContainer {
+  display: flex;
+  /* float: right; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  /* align-items: center; */
+}
+.saveButton{
+  margin-bottom: 14px;
+}
 
-.photoUploadButton:hover, .submitButton:hover, .editButton:hover, .saveButton:hover {
+.photoUploadButton:hover, .submitButton:hover, .editButton:hover, .saveButton:hover, .deleteButton:hover {
   transform: scale(1.05);
   box-shadow: 6px 2px 6px 0px  rgba(0,0,0,0.7);
 }
