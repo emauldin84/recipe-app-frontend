@@ -57,7 +57,6 @@ ul {
   border: 1px solid #464a52;
   transform: scale(1.1);
   box-shadow: 6px 2px 6px 0px  rgba(0,0,0,0.7);
-
 }
 
 .card:hover, .arrow:hover{
@@ -72,6 +71,8 @@ ul {
 }
 .recipeDetails {
   /* margin-left: calc(10px + 5vmin); */
+  display: flex;
+  align-items: center;
   max-width: 90%;
 }
 .arrow {
@@ -265,7 +266,29 @@ textarea {
   font-size: calc(10px + 1vmin);
   transition: all .2s ease-in-out;
 }
+
 .editButton, .saveButton, .deleteButton {
+  text-decoration: none;
+  color: #FFFFFF;
+  background-color: #464a52;
+  font-size: calc(10px + 1vmin);
+  border: 1px solid #FFFFFF;
+  padding: 3px 5px;
+  margin: 7px;
+  box-sizing: border-box;
+  display: block;
+  text-align: center;
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.5);
+  transition: all .2s ease-in-out;
+}
+.photoUploadButton:hover, .submitButton:hover, .editButton:hover, .saveButton:hover, .deleteButton:hover {
+  color: #464a52;
+  background-color: #FFFFFF;
+  border: 1px solid #464a52;
+  transform: scale(1.1);
+  box-shadow: 6px 2px 6px 0px  rgba(0,0,0,0.7);
+}
+/* .editButton, .saveButton, .deleteButton {
   box-sizing: border-box;
   outline: none;
   color: #464a52;
@@ -277,8 +300,7 @@ textarea {
   font-size: calc(10px + 1vmin);
   transition: all .2s ease-in-out;
   max-width: 180px;
-
-}
+} */
 .saveButtonContainer {
   display: flex;
   /* float: right; */
@@ -290,10 +312,10 @@ textarea {
   margin-bottom: 14px;
 }
 
-.photoUploadButton:hover, .submitButton:hover, .editButton:hover, .saveButton:hover, .deleteButton:hover {
+/* .photoUploadButton:hover, .submitButton:hover, .editButton:hover, .saveButton:hover, .deleteButton:hover {
   transform: scale(1.05);
   box-shadow: 6px 2px 6px 0px  rgba(0,0,0,0.7);
-}
+} */
 
 
 

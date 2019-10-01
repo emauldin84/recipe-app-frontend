@@ -119,6 +119,8 @@ class Recipe extends Component {
                     }
                 }
             }
+            let date = this.state.editing ? null : <p className='recipeAddedDate'><b>Recipe added:</b> {moment(recipe.recipe_added_date).format('LL')}</p>
+
 
             // console.log('RECIPE DETAILS', recipe.recipe_details)
             return(
@@ -135,14 +137,9 @@ class Recipe extends Component {
                                 <button className='saveButton' style={this.state.editing ? null : { display: 'none' }}>Save Changes</button>
                             </div>
                             {title}
-                            {/* <h3 contentEditable={this.state.editing} suppressContentEditableWarning={true} onChange={this.onTitleChangeHandler}>{recipe.recipe_title}</h3> */}
-                            <p className='recipeAddedDate'><b>Recipe added:</b> {moment(recipe.recipe_added_date).format('LL')}</p>
+                            {date}
                             {image}
                             <div className='recipeDetails'>
-                                {/* <Editor 
-                                editorState={EditorState.createWithContent(convertFromRaw(JSON.parse(recipe.recipe_details)))}
-                                readOnly={true}
-                                /> */}
                                 {details}
                             </div>
                         </form>
