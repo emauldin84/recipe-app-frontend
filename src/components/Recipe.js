@@ -91,7 +91,7 @@ class Recipe extends Component {
     render() {
         // console.log('editedDetails',this.props.editedDetails)
         const recipeData = this.props.selectedRecipe
-        console.log('RD',recipeData)
+        // console.log('RD',recipeData)
 
         
         let recipe = recipeData ? recipeData.map(recipe => {

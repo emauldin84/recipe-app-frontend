@@ -4,18 +4,18 @@ import axios from 'axios'
 
 
 import './App.css';
-import Dashboard from './containers/Dashboard'
+// import Dashboard from './containers/Dashboard'
+import Recipes from './components/Recipes'
 import Recipe from './components/Recipe'
 import Nav from './containers/Nav'
 import AddRecipeForm from './components/AddRecipeForm'
-
-
 
 class App extends Component {
   state = {
     recipes: null,
     selectedRecipe: null,
     editedDetails: null,
+    search: '',
 }
 
 componentDidMount() {
@@ -65,6 +65,13 @@ onTextEditorChangeHandlerEdit = (editedDetails) => {
       }, console.log('this.state.editedDetails from App', this.state.editedDetails))
     }
 
+handleSearch = (e) => {
+  this.setState({
+    search: e.target.value
+  })
+}
+
+
   render() {
     let routes = (
       <div>
@@ -85,9 +92,11 @@ onTextEditorChangeHandlerEdit = (editedDetails) => {
                                 handleClickedBackButton={this.clickedBackButtonHandler}/>} />
           <Route 
             path='/' exact 
-            render={(props) => <Dashboard 
+            render={(props) => <Recipes 
                             {...props} 
-                            recipes={this.state.recipes} 
+                            recipes={this.state.recipes}
+                            search={this.state.search}
+                            handleSearch={this.handleSearch}
                             handleClickedRecipe={this.clickedRecipeHandler}/>} />
           <Redirect to='/' />
         </Switch>
