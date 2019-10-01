@@ -41,12 +41,15 @@ const Recipes = (props) => {
     }) : null
 
     return(
-        <div className='cards'>
-            <SearchBar 
-                search={props.search}
-                handleSearch={props.handleSearch}
-            />
-            {recipes}
+        <div>
+            <div className='cards'>
+                <SearchBar 
+                    search={props.search}
+                    handleSearch={props.handleSearch}
+                />
+                {recipes}
+            </div>
+
         </div>
 
         

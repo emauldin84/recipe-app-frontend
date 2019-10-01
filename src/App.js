@@ -75,7 +75,7 @@ handleSearch = (e) => {
   render() {
     let routes = (
       <div>
-        <Nav />
+        <Nav recipes={this.state.recipes}/>
         <Switch>
           <Route 
             path='/recipe/:id' 
