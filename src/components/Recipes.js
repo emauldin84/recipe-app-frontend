@@ -46,6 +46,7 @@ const Recipes = (props) => {
                 <SearchBar 
                     search={props.search}
                     handleSearch={props.handleSearch}
+                    recipes={props.recipes}
                 />
                 {recipes}
             </div>
