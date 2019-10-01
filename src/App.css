@@ -181,6 +181,9 @@ h3 {
   align-items: center;
   margin-top: 20px;
 }
+.editRecipeForm{
+  width: 80vw;
+}
 
 .Input {
   width: 80vw;
