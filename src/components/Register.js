@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 
-class RegisterLogin extends Component {
+class Register extends Component {
     state = {
         firstName: '',
         lastName: '',
@@ -68,4 +68,4 @@ class RegisterLogin extends Component {
     }
 }
 
-export default RegisterLogin
+export default Register

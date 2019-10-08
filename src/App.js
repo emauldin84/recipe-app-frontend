@@ -9,7 +9,8 @@ import Recipes from './components/Recipes'
 import Recipe from './components/Recipe'
 import Nav from './containers/Nav'
 import AddRecipeForm from './components/AddRecipeForm'
-import RegisterLogin from './components/RegisterLogin'
+import Register from './components/Register'
+import Login from './components/Login'
 
 class App extends Component {
   state = {
@@ -80,7 +81,13 @@ handleSearch = (e) => {
         <Switch>
           <Route
             path='/register'
-            render={(props) => <RegisterLogin
+            render={(props) => <Register
+                            {...props}
+                            />}
+          />
+          <Route
+            path='/login'
+            render={(props) => <Login
                             {...props}
                             />}
           />
