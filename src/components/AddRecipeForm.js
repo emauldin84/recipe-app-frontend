@@ -94,7 +94,7 @@ class AddRecipeForm extends Component {
         return (
             <div className='recipeFormContainer'>
                 <BackButton handleClickedBackButton={this.props.handleClickedBackButton}/>
-                <form action='/recipes/add-new-recipe' className='newRecipeForm' encType="multipart/form-data" method="post" onSubmit={this.onSubmitHandler}>
+                <form action='/recipes/add-new-recipe' className='form' encType="multipart/form-data" method="post" onSubmit={this.onSubmitHandler}>
                     <div>
                         <label className='recipeTitleInput Label'>Title</label>
                         <input id='title' value={this.state.newRecipe.title} placeholder='What is the title of your dish?' className='Input' onChange={this.onTitleChangeHandler} type="text" required/>
