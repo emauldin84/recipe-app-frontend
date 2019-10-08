@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { NavLink } from 'react-router-dom'
 
 
 class Register extends Component {
@@ -44,9 +45,9 @@ class Register extends Component {
 
         return(
             <div>
-                <h2>Register</h2>
-                <p>or</p>
-                <h4>Log in</h4>
+                <h2 className='loginregisterTitle'>Register</h2>
+                <p className='or'>or</p>
+                <NavLink to='/login' className='switchRegisterLogin'>Log in</NavLink>
                 <form className='form' action='/users/add-new-user' encType="multipart/form-data" method="post" onSubmit={this.handleInputSubmit}>
                     <label className='firstNameLabel Label'>First Name</label>
                     <input id='firstName' value={this.state.firstName} placeholder='ex. John' className='Input imageUrlInput' onChange={this.handleInputChange} required/>

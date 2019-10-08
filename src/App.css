@@ -253,6 +253,23 @@ textarea {
   margin-bottom: 8px;
 }
 
+.switchRegisterLogin {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: calc(10px + 1vmin);
+}
+.switchRegisterLogin:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+.loginregisterTitle{
+  margin-bottom: 0;
+}
+
+.or {
+  margin: 0;
+}
+
 .InputElement:focus {
   background-color: #ccc;
 }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { NavLink } from 'react-router-dom'
+
 
 
 class Login extends Component {
@@ -39,9 +41,9 @@ class Login extends Component {
 
         return(
             <div>
-                <h2>Log in</h2>
-                <p>or</p>
-                <h4>Register</h4>
+                <h2 className='loginregisterTitle'>Log in</h2>
+                <p className='or'>or</p>
+                <NavLink to='/register' className='switchRegisterLogin'>Register</NavLink>
                 <form className='form' action='/users/login' encType="multipart/form-data" method="post" onSubmit={this.handleInputSubmit}>
                     <label className='emailLabel Label'>Email</label>
                     <input id='email' value={this.state.email} placeholder='enter email' className='Input imageUrlInput' onChange={this.handleInputChange} required/>
@@ -49,7 +51,7 @@ class Login extends Component {
                     <label className='firstNameLabel Label'>Password</label>
                     <input id='password' value={this.state.password} placeholder='enter password' className='Input imageUrlInput' onChange={this.handleInputChange} required/>
                     
-                    <button type='submit' className='submitButton'>Register</button>
+                    <button type='submit' className='submitButton'>Log in</button>
                 </form>
 
             </div>
