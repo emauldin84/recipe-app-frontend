@@ -40,7 +40,7 @@ const Recipes = (props) => {
         )
     }) : null
 
-    let clearSearch = props.search.length > 0 ? <div className='clearSearch' onClick={props.handleClearSearchBar}>x</div> : null 
+    let clearSearchClass = props.search.length > 0 ? 'clearSearch': 'hideClearSearch'
 
     return(
         <div>
@@ -51,7 +51,7 @@ const Recipes = (props) => {
                         handleSearch={props.handleSearch}
                         recipes={props.recipes}
                     />
-                    {clearSearch}
+                    <div className={clearSearchClass} onClick={props.handleClearSearchBar}>clear</div>
                 </div>
                 {recipes}
             </div>

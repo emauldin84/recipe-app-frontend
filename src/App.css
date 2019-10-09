@@ -220,14 +220,20 @@ h3 {
 }
 .clearSearch {
   color: rgba(255, 255, 255, 0.3);
+  font-size: calc(3px + 2vmin);
+  margin-left: calc(-10px - 6vmin);
+  margin-bottom: -10px;
 }
-
 .clearSearch:hover {
   color: rgba(255, 255, 255, 1);
   cursor: pointer;
 }
-
-
+.hideClearSearch {
+  visibility: hidden;
+  margin-left: calc(-10px - 6vmin);
+  font-size: calc(3px + 2vmin);
+  margin-bottom: -10px;
+}
 
 .styleToolBar {
   display: flex;
