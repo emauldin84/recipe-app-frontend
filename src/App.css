@@ -81,10 +81,10 @@ ul {
   margin: 5px;
   
   /* set size */
-  padding: 10px;
+  padding: 8px;
   
   /* set tickness */
-  box-shadow: 5px -5px 0 0 tomato inset;
+  box-shadow: 3px -3px 0 0 tomato inset;
 }
 
 .arrow--left {
@@ -93,7 +93,7 @@ ul {
 
 .backButton-container {
   float: left;
-  margin-left: 20px;
+  margin-left: calc(20px + 1vmin);
 }
 .backButton-container:hover {
   transform: scale(1.15);
