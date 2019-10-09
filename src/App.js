@@ -73,6 +73,12 @@ handleSearch = (e) => {
   })
 }
 
+handleClearSearchBar = () => {
+  this.setState({
+    search: '',
+  })
+}
+
 
   render() {
     let routes = (
@@ -111,6 +117,7 @@ handleSearch = (e) => {
                             recipes={this.state.recipes}
                             search={this.state.search}
                             handleSearch={this.handleSearch}
+                            handleClearSearchBar={this.handleClearSearchBar}
                             handleClickedRecipe={this.clickedRecipeHandler}/>} />
           <Redirect to='/' />
         </Switch>
