@@ -13,16 +13,26 @@ import Register from './components/Register'
 import Login from './components/Login'
 
 class App extends Component {
+  constructor(props){
+    super(props)
+    
+  }
   state = {
     recipes: null,
     selectedRecipe: null,
     editedDetails: null,
     search: '',
+    user: null,
 }
 
-componentDidMount() {
-  console.log('edited details from APP',this.state.editedDetails)
-    this.handleGetRecipes()
+async componentDidMount() {
+  await axios.get('/session')
+  .then(res => {
+    this.setUserState(res.data)
+    console.log(res.data)
+  })
+  console.log('state user', this.state.user)
+  this.handleGetRecipes()
 }
 
 componentDidUpdate(prevProps, prevState) {
@@ -30,6 +40,11 @@ componentDidUpdate(prevProps, prevState) {
     this.handleGetRecipes()
   }
 
+}
+setUserState = (userData) => {
+  this.setState({
+    user: userData
+  })
 }
 
 handleGetRecipes() {
@@ -49,22 +64,20 @@ clickedRecipeHandler = (recipeId) => {
     let recipe = this.state.recipes.filter(rec => {
         return rec.id === recipeId
     })
-    console.log('Clicked Recipe',recipe)
     this.setState({
         selectedRecipe: recipe
-    }, () => this.props.history.push(`/recipe/${recipeId}`), console.log('clicked recipe handler',this.state.selectedRecipe))
+    }, () => this.props.history.push(`/recipe/${recipeId}`))
     
 }
 
 clickedBackButtonHandler = () => {
-  console.log('back to the future')
   this.props.history.goBack()
 }
 
 onTextEditorChangeHandlerEdit = (editedDetails) => {
       this.setState({
           editedDetails
-      }, console.log('this.state.editedDetails from App', this.state.editedDetails))
+      })
     }
 
 handleSearch = (e) => {

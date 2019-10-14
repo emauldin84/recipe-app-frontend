@@ -6,15 +6,9 @@ const Recipes = (props) => {
 
     const recipesData = props.recipes
 
-    console.log('recipesData from Recipes', recipesData)
-    console.log(props.search)
-
     let filteredRecipes = recipesData ? recipesData.filter(recipe => {
         return recipe.recipe_title.toLowerCase().includes(props.search.toLowerCase())
     }) : null
-
-    console.log(filteredRecipes)
-
 
     let recipes = recipesData ? props.search ? filteredRecipes.map(recipe => {
         const image = recipe.recipe_photo ? <img src={recipe.recipe_photo} alt="Sample"/>  : null

@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom'
 
 
 const Nav = (props) => {
-    console.log(props.recipes)
     let classes = props.recipes === null || props.recipes.length === 0 ? 'addRecipe pulse' : 'addRecipe'
     return (
         <div className='navContainer'>
