@@ -48,8 +48,11 @@ componentDidUpdate(prevProps, prevState) {
   if(prevState.recipes !== null && prevState.recipes === this.state.recipes) {
     this.handleGetRecipes()
   }
-
 }
+// shouldComponentUpdate(prevProps, prevState){
+//   return this.state.recipes !== prevState.recipes
+// }
+
 setUserState = (userData) => {
   this.setState({
     user: userData,
@@ -77,6 +80,7 @@ checkForSession = async () => {
 handleGetRecipes() {
   axios.get(`/recipes/allrecipes`)
     .then(res => {
+      console.log('RECIPES',res.data)
       if(res.data !== this.state.recipes){
         const recipesData = res.data
         this.setState({

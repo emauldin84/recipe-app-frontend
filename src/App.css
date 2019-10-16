@@ -95,7 +95,7 @@ ul {
 
 .backButton-container {
   float: left;
-  margin-left: calc(20px + 1vmin);
+  margin-left: -3vmin;
 }
 .backButton-container:hover {
   transform: scale(1.15);
