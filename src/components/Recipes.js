@@ -38,15 +38,15 @@ const Recipes = (props) => {
 
     return(
         <div>
+            <div className='searchBarContainer'>
+                <SearchBar 
+                    search={props.search}
+                    handleSearch={props.handleSearch}
+                    recipes={props.recipes}
+                />
+                <div className={clearSearchClass} onClick={props.handleClearSearchBar}>clear</div>
+            </div>
             <div className='cards'>
-                <div className='searchBarContainer'>
-                    <SearchBar 
-                        search={props.search}
-                        handleSearch={props.handleSearch}
-                        recipes={props.recipes}
-                    />
-                    <div className={clearSearchClass} onClick={props.handleClearSearchBar}>clear</div>
-                </div>
                 {recipes}
             </div>
 
