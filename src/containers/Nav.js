@@ -10,6 +10,7 @@ const Nav = (props) => {
             <ul>
                 <NavLink to='/new-recipe' className={classes}>+</NavLink>
             </ul>
+                <NavLink to='/login' onClick={props.handleSignOut}>Sign out</NavLink>
         </div>
     )
 }

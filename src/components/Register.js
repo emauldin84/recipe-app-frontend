@@ -56,10 +56,10 @@ class Register extends Component {
                     <input id='lastName' value={this.state.lastName} placeholder='ex. Appleseed' className='Input imageUrlInput' onChange={this.handleInputChange} required/>
                     
                     <label className='emailLabel Label'>Email</label>
-                    <input id='email' value={this.state.email} placeholder='ex. example@email.com' className='Input imageUrlInput' onChange={this.handleInputChange} required/>
+                    <input id='email' type="email" value={this.state.email} placeholder='ex. example@email.com' className='Input imageUrlInput' onChange={this.handleInputChange} required/>
                     
                     <label className='firstNameLabel Label'>Password</label>
-                    <input id='password' value={this.state.password} placeholder='be as complex as possible' className='Input imageUrlInput' onChange={this.handleInputChange} required/>
+                    <input id='password' type="password" value={this.state.password} placeholder='be as complex as possible' className='Input imageUrlInput' onChange={this.handleInputChange} required/>
                     
                     <button type='submit' className='submitButton'>Register</button>
                 </form>

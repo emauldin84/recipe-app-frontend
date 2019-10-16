@@ -28,10 +28,11 @@ class Login extends Component {
 
         axios.post('/users/login', formData)
         .then(res => {
-            console.log(res.data)
+            console.log('DATA', res)
             console.log('The user was successfully logged in')
-            
-            this.props.history.push('/')
+            if(res.data.id){
+                this.props.history.push('/')
+            }
         })
         .catch(err => err)
 
@@ -46,10 +47,10 @@ class Login extends Component {
                 <NavLink to='/register' className='switchRegisterLogin'>Register</NavLink>
                 <form className='form' action='/users/login' encType="multipart/form-data" method="post" onSubmit={this.handleInputSubmit}>
                     <label className='emailLabel Label'>Email</label>
-                    <input id='email' value={this.state.email} placeholder='enter email' className='Input imageUrlInput' onChange={this.handleInputChange} required/>
+                    <input id='email' type="email" value={this.state.email} placeholder='enter email' className='Input imageUrlInput' onChange={this.handleInputChange} required/>
                     
                     <label className='firstNameLabel Label'>Password</label>
-                    <input id='password' value={this.state.password} placeholder='enter password' className='Input imageUrlInput' onChange={this.handleInputChange} required/>
+                    <input id='password' type="password" value={this.state.password} placeholder='enter password' className='Input imageUrlInput' onChange={this.handleInputChange} required/>
                     
                     <button type='submit' className='submitButton'>Log in</button>
                 </form>

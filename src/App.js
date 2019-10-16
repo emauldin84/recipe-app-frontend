@@ -23,16 +23,24 @@ class App extends Component {
     editedDetails: null,
     search: '',
     user: null,
+    loggedIn: false,
 }
 
 async componentDidMount() {
   await axios.get('/session')
   .then(res => {
-    this.setUserState(res.data)
-    console.log(res.data)
+    if(res.data.id){
+      this.setUserState(res.data)
+    }
+    if (res.data.message){
+      console.log('not loading session fast enough')
+    }
+    console.log('res.data',res.data)
   })
   console.log('state user', this.state.user)
-  this.handleGetRecipes()
+  if(this.state.user){
+    this.handleGetRecipes()
+  }
 }
 
 componentDidUpdate(prevProps, prevState) {
@@ -43,7 +51,8 @@ componentDidUpdate(prevProps, prevState) {
 }
 setUserState = (userData) => {
   this.setState({
-    user: userData
+    user: userData,
+    loggedIn: true,
   })
 }
 
@@ -92,11 +101,21 @@ handleClearSearchBar = () => {
   })
 }
 
+handleSignOut = () => {
+  axios.delete('/users/logout')
+  .then(
+    this.setState({
+      loggedIn: false,
+      user: null,
+    })
+  )
+}
+
 
   render() {
     let routes = (
       <div>
-        <Nav recipes={this.state.recipes}/>
+        <Nav recipes={this.state.recipes} handleSignOut={this.handleSignOut}/>
         <Switch>
           <Route
             path='/register'
@@ -110,8 +129,9 @@ handleClearSearchBar = () => {
                             {...props}
                             />}
           />
-          <Route 
-            path='/recipe/:id' 
+          <Route
+          // added reroute option if user not logged in.
+            path={this.state.loggedIn ? '/recipe/:id' : '/register'}
             render={(props) => <Recipe 
                             {...props} 
                             selectedRecipe={this.state.selectedRecipe}
@@ -119,12 +139,12 @@ handleClearSearchBar = () => {
                             handleClickedBackButton={this.clickedBackButtonHandler}
                             onTextEditorChangeHandlerEdit={this.onTextEditorChangeHandlerEdit}/>} />
           <Route
-            path='/new-recipe'
+            path={this.state.loggedIn ? '/new-recipe' : '/register'}
             render={(props) => <AddRecipeForm
                                 {...props}
                                 handleClickedBackButton={this.clickedBackButtonHandler}/>} />
           <Route 
-            path='/' exact 
+            path={this.state.loggedIn ? '/' : '/register'} exact 
             render={(props) => <Recipes 
                             {...props} 
                             recipes={this.state.recipes}
