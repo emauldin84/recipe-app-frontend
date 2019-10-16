@@ -27,6 +27,37 @@ class App extends Component {
 }
 
 async componentDidMount() {
+  // await axios.get('/session')
+  // .then(res => {
+  //   if(res.data.id){
+  //     this.setUserState(res.data)
+  //   }
+  //   if (res.data.message){
+  //     console.log('not loading session fast enough')
+  //   }
+  //   console.log('res.data',res.data)
+  // })
+  // console.log('state user', this.state.user)
+  // if(this.state.user){
+  //   this.handleGetRecipes()
+  // }
+  await this.checkForSession()
+}
+
+componentDidUpdate(prevProps, prevState) {
+  if(prevState.recipes !== null && prevState.recipes === this.state.recipes) {
+    this.handleGetRecipes()
+  }
+
+}
+setUserState = (userData) => {
+  this.setState({
+    user: userData,
+    loggedIn: true,
+  })
+}
+
+checkForSession = async () => {
   await axios.get('/session')
   .then(res => {
     if(res.data.id){
@@ -43,20 +74,6 @@ async componentDidMount() {
   }
 }
 
-componentDidUpdate(prevProps, prevState) {
-  if(prevState.recipes !== null && prevState.recipes === this.state.recipes) {
-    this.handleGetRecipes()
-  }
-
-}
-setUserState = (userData) => {
-  this.setState({
-    user: userData,
-    loggedIn: true,
-  })
-}
-
-// pass to Login and Register for check?
 handleGetRecipes() {
   axios.get(`/recipes/allrecipes`)
     .then(res => {
@@ -120,34 +137,35 @@ handleSignOut = () => {
           path='/register'
           render={(props) => <Register
                           {...props}
+                          checkForSession={this.checkForSession}
                           />}
         />
         <Route
           path='/login'
           render={(props) => <Login
                           {...props}
+                          checkForSession={this.checkForSession}
                           />}
         />
         <Redirect to='/login' />
     </Switch>
-
     )
+
     if(this.state.loggedIn) {
       routes = (
         <div>
-          <Route
-          path='/register'
-          render={(props) => <Register
-                          {...props}
+          {/* <Route
+            path='/register'
+            render={(props) => <Register
+                              {...props}
                           />}
           />
           <Route
-          path='/login'
-          render={(props) => <Login
-                          {...props}
+            path='/login'
+            render={(props) => <Login
+                              {...props}
                           />}
-          />
-          
+          /> */}
           <Route
             path={'/recipe/:id'}
             render={(props) => <Recipe 

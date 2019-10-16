@@ -302,6 +302,10 @@ textarea {
   font-size: calc(10px + 1vmin);
 }
 
+.unsuccessful {
+  margin: 0;
+}
+
 .InputElement:focus {
   background-color: #ccc;
 }

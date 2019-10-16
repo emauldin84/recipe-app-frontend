@@ -9,6 +9,7 @@ class Register extends Component {
         lastName: '',
         email: '',
         password: '',
+        failedRegistrationMessage: null,
     }
 
     handleInputChange = (e) => {
@@ -30,11 +31,18 @@ class Register extends Component {
         console.log('formData',formData)
 
         axios.post('/users/add-new-user', formData)
-        .then(res => {
-            console.log(res.data)
-            console.log('The user was successfully registered')
+        .then(async res => {
+            console.log('from register', res.data)
+            if (res.data.id) {
+                await this.props.checkForSession()
+                console.log('The user was successfully registered')
+                this.props.history.push('/')
+            } else {
+                this.setState({
+                    failedRegistrationMessage: <p className='unsuccessful'>Email address is taken. Please try again.</p>
+                })
+            }
             
-            this.props.history.push('/')
 
         })
         .catch(err => err)
@@ -62,8 +70,8 @@ class Register extends Component {
                     <input id='password' type="password" value={this.state.password} placeholder='be as complex as possible' className='Input imageUrlInput' onChange={this.handleInputChange} required/>
                     
                     <button type='submit' className='submitButton'>Register</button>
+                    {this.state.failedRegistrationMessage}
                 </form>
-
             </div>
         )
     }

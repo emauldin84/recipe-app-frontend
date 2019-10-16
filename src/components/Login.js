@@ -28,14 +28,15 @@ class Login extends Component {
         console.log('formData',formData)
 
         axios.post('/users/login', formData)
-        .then(res => {
+        .then(async res => {
             console.log('DATA', res.data)
             if(res.data.id){
+                await this.props.checkForSession()
                 console.log('The user was successfully logged in')
                 this.props.history.push('/')
             } else {
                 this.setState({
-                    failedLoginMessage: <p>Email and/or password is incorrect.</p>
+                    failedLoginMessage: <p className='unsuccessful'>Email and/or password is incorrect.</p>
                 })
             }
         })
@@ -58,8 +59,8 @@ class Login extends Component {
                     <input id='password' type="password" value={this.state.password} placeholder='enter password' className='Input imageUrlInput' onChange={this.handleInputChange} required/>
                     
                     <button type='submit' className='submitButton'>Log in</button>
+                    {this.state.failedLoginMessage}
                 </form>
-                {this.state.failedLoginMessage}
             </div>
         )
     }
