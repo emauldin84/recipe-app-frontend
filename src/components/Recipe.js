@@ -71,7 +71,7 @@ class Recipe extends Component {
             this.setState({
                 editing: false,
             })
-            // this.props.history.push(`/recipe/${this.props.selectedRecipe[0].id}`)
+
             this.props.history.push(`/`)
 
         })
@@ -90,11 +90,8 @@ class Recipe extends Component {
     }
 
     render() {
-        // console.log('editedDetails',this.props.editedDetails)
         const recipeData = this.props.selectedRecipe
-        // console.log('RD',recipeData)
 
-        
         let recipe = recipeData ? recipeData.map(recipe => {
             const details = this.state.editing ? <InRecipeTextEditor 
                                                     onTextEditorChangeHandlerEdit={this.props.onTextEditorChangeHandlerEdit}
@@ -124,21 +121,17 @@ class Recipe extends Component {
 
             let editDiscard = this.state.editing ? <FaUndo className='editButton' title='Undo' onClick={this.onEditHandler}/> : <FaEdit className='editButton' title='Edit' onClick={this.onEditHandler}/>
 
-            // console.log('RECIPE DETAILS', recipe.recipe_details)
             return(
                 <div key={recipe.id}>
                     
                     <div>
                         <div className='button-container'>
-                            {/* <FaEdit className='editButton' title='Edit' onClick={this.onEditHandler}>{this.state.editing ? 'Discard Changes' : 'Edit'}</FaEdit> */}
-                            {/* <FaEdit className='editButton' title='Edit' onClick={this.onEditHandler}/> */}
                             {editDiscard}
-                            {/* <img src={require('../media/iconfinder_save_326688.png')} className='editButton' onClick={this.onEditHandler} /> */}
-                            <FaTrash className='deleteButton' title='Delete' onClick={this.deleteHandler} style={!this.state.editing ? null : null}>Delete</FaTrash>
+                            <FaTrash className='deleteButton' title='Delete' onClick={this.deleteHandler} style={!this.state.editing ? null : null}/>
                         </div>
                         <form action={`/recipes/edit/${this.props.selectedRecipe[0].id}`} className='editRecipeForm' encType="multipart/form-data" method="post" onSubmit={this.onSaveHandler}>
                             <div className='saveButtonContainer'>
-                                <FaSave className='saveButton' title='Save changes' style={this.state.editing ? null : { display: 'none' }}>Save Changes</FaSave>
+                                <button type='submit' className='saveButtonInnerContainer' title='Save changes' style={this.state.editing ? null : { display: 'none' }}><FaSave className='saveButton'/></button>
                             </div>
                             {title}
                             {date}
