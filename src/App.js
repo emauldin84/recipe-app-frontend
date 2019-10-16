@@ -102,7 +102,7 @@ clickedRecipeHandler = (recipeId) => {
 }
 
 clickedBackButtonHandler = () => {
-  this.props.history.goBack()
+  this.props.history.push('/')
 }
 
 onTextEditorChangeHandlerEdit = (editedDetails) => {
@@ -135,25 +135,7 @@ handleSignOut = () => {
 
 
   render() {
-    let routes = (
-      <Switch>
-        <Route
-          path='/register'
-          render={(props) => <Register
-                          {...props}
-                          checkForSession={this.checkForSession}
-                          />}
-        />
-        <Route
-          path='/login'
-          render={(props) => <Login
-                          {...props}
-                          checkForSession={this.checkForSession}
-                          />}
-        />
-        <Redirect to='/login' />
-    </Switch>
-    )
+    let routes = null
 
     if(this.state.loggedIn) {
       routes = (
@@ -195,7 +177,27 @@ handleSignOut = () => {
           <Redirect to='/' />  
         </div>
       )
-    } 
+    } else {
+      routes = (
+        <Switch>
+          <Route
+            path='/register'
+            render={(props) => <Register
+                            {...props}
+                            checkForSession={this.checkForSession}
+                            />}
+          />
+          <Route
+            path='/login'
+            render={(props) => <Login
+                            {...props}
+                            checkForSession={this.checkForSession}
+                            />}
+          />
+          <Redirect to='/login' />
+      </Switch>
+      )
+    }
     
 
     return (

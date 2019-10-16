@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { EditorState, Editor, convertFromRaw } from 'draft-js'
 import moment from 'moment'
 import axios from 'axios'
+import { FaEdit, FaSave, FaTrash, FaUndo } from 'react-icons/fa'
 
 import InRecipeTextEditor from '../utils/InRecipeTextEditor'
 import BackButton from '../utils/BackButton'
@@ -121,6 +122,7 @@ class Recipe extends Component {
             }
             let date = this.state.editing ? null : <p className='recipeAddedDate'><b>Recipe added:</b> {moment(recipe.recipe_added_date).format('LL')}</p>
 
+            let editDiscard = this.state.editing ? <FaUndo className='editButton' title='Undo' onClick={this.onEditHandler}/> : <FaEdit className='editButton' title='Edit' onClick={this.onEditHandler}/>
 
             // console.log('RECIPE DETAILS', recipe.recipe_details)
             return(
@@ -128,13 +130,15 @@ class Recipe extends Component {
                     
                     <div>
                         <div className='button-container'>
-                            <button className='editButton' onClick={this.onEditHandler}>{this.state.editing ? 'Discard Changes' : 'Edit'}</button>
+                            {/* <FaEdit className='editButton' title='Edit' onClick={this.onEditHandler}>{this.state.editing ? 'Discard Changes' : 'Edit'}</FaEdit> */}
+                            {/* <FaEdit className='editButton' title='Edit' onClick={this.onEditHandler}/> */}
+                            {editDiscard}
                             {/* <img src={require('../media/iconfinder_save_326688.png')} className='editButton' onClick={this.onEditHandler} /> */}
-                            <button className='deleteButton' onClick={this.deleteHandler} style={!this.state.editing ? null : { display: 'none' }}>Delete</button>
+                            <FaTrash className='deleteButton' title='Delete' onClick={this.deleteHandler} style={!this.state.editing ? null : null}>Delete</FaTrash>
                         </div>
                         <form action={`/recipes/edit/${this.props.selectedRecipe[0].id}`} className='editRecipeForm' encType="multipart/form-data" method="post" onSubmit={this.onSaveHandler}>
                             <div className='saveButtonContainer'>
-                                <button className='saveButton' style={this.state.editing ? null : { display: 'none' }}>Save Changes</button>
+                                <FaSave className='saveButton' title='Save changes' style={this.state.editing ? null : { display: 'none' }}>Save Changes</FaSave>
                             </div>
                             {title}
                             {date}

@@ -36,7 +36,7 @@ class BlockStyleToolbar extends React.Component {
         .getType();
         
         return (
-        <div className='blockStyleToolbar'>
+        <div className='blockStyleToolBar'>
         <span className="RichEditor-controls">
             <HeaderStyleDropdown
             headerOptions={BLOCK_TYPE_HEADINGS}

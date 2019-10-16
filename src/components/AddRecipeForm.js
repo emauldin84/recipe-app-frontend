@@ -92,28 +92,32 @@ class AddRecipeForm extends Component {
     render() {
         console.log('DETAILS FOR UPLOAD', this.state.detailsForUpload)
         return (
-            <div className='recipeFormContainer'>
+            <div>
                 <BackButton handleClickedBackButton={this.props.handleClickedBackButton}/>
-                <form action='/recipes/add-new-recipe' className='form' encType="multipart/form-data" method="post" onSubmit={this.onSubmitHandler}>
-                    <div>
-                        <label className='recipeTitleInput Label'>Title</label>
-                        <input id='title' value={this.state.newRecipe.title} placeholder='What is the title of your dish?' className='Input' onChange={this.onTitleChangeHandler} type="text" required/>
-                    </div>
+                <div className='recipeFormContainer'>
+                    <form action='/recipes/add-new-recipe' className='form' encType="multipart/form-data" method="post" onSubmit={this.onSubmitHandler}>
+                        <div>
+                            <label className='recipeTitleInput Label'>Title</label>
+                            <input id='title' value={this.state.newRecipe.title} placeholder='What is the title of your dish?' className='Input' onChange={this.onTitleChangeHandler} type="text" required/>
+                        </div>
 
-                    <div>
-                        <label className='recipeDetailsInput Label'>Recipe</label>
-                        {/* <textarea id='details' value={this.state.newRecipe.details} className='Input' placeholder='Enter ingredients, timing and recipe steps...' onChange={this.onChangeHandler} rows='10'/> */}
-                        <TextEditor onTextEditorChangeHandler={this.onTextEditorChangeHandler}/>
-                    </div>
-                    <div>
-                        {/* <label className='recipeTitleInput Label'>Title</label> */}
-                        <label className='recipeTitleInput Label'>Image</label>
-                        <input id='imageUrl' value={this.state.newRecipe.imageUrl} placeholder='Enter image URL' className='Input imageUrlInput' onChange={this.onImageUrlChangeHandler}/>
-                    </div>
-                    {/* <PhotoUploader handleImageSelect={this.onImageChangeHandler} image={this.state.image}/> */}
-                    <button type='submit' className='submitButton'>Save</button>
+                        <div>
+                            <label className='recipeDetailsInput Label'>Recipe</label>
+                            {/* <textarea id='details' value={this.state.newRecipe.details} className='Input' placeholder='Enter ingredients, timing and recipe steps...' onChange={this.onChangeHandler} rows='10'/> */}
+                            <TextEditor onTextEditorChangeHandler={this.onTextEditorChangeHandler}/>
+                        </div>
+                        <div>
+                            {/* <label className='recipeTitleInput Label'>Title</label> */}
+                            <label className='recipeTitleInput Label'>Image</label>
+                            <input id='imageUrl' value={this.state.newRecipe.imageUrl} placeholder='Enter image URL' className='Input imageUrlInput' onChange={this.onImageUrlChangeHandler}/>
+                        </div>
+                        {/* <PhotoUploader handleImageSelect={this.onImageChangeHandler} image={this.state.image}/> */}
+                        <button type='submit' className='submitButton'>Save</button>
 
-                </form>
+                    </form>
+                </div>
+
+
             </div>
         )
 

@@ -52,10 +52,10 @@ class Login extends Component {
                 <p className='or'>or</p>
                 <NavLink to='/register' className='switchRegisterLogin'>Register</NavLink>
                 <form className='form' action='/users/login' encType="multipart/form-data" method="post" onSubmit={this.handleInputSubmit}>
-                    <label className='emailLabel Label'>Email</label>
+                    <label className='login-register-label Label'>Email</label>
                     <input id='email' type="email" value={this.state.email} placeholder='enter email' className='Input imageUrlInput' onChange={this.handleInputChange} required/>
                     
-                    <label className='firstNameLabel Label'>Password</label>
+                    <label className='login-register-label Label'>Password</label>
                     <input id='password' type="password" value={this.state.password} placeholder='enter password' className='Input imageUrlInput' onChange={this.handleInputChange} required/>
                     
                     <button type='submit' className='submitButton'>Log in</button>
