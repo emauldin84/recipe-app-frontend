@@ -8,6 +8,7 @@ class Login extends Component {
     state = {
         email: '',
         password: '',
+        failedLoginMessage: null,
     }
 
     handleInputChange = (e) => {
@@ -28,10 +29,14 @@ class Login extends Component {
 
         axios.post('/users/login', formData)
         .then(res => {
-            console.log('DATA', res)
-            console.log('The user was successfully logged in')
+            console.log('DATA', res.data)
             if(res.data.id){
+                console.log('The user was successfully logged in')
                 this.props.history.push('/')
+            } else {
+                this.setState({
+                    failedLoginMessage: <p>Email and/or password is incorrect.</p>
+                })
             }
         })
         .catch(err => err)
@@ -54,7 +59,7 @@ class Login extends Component {
                     
                     <button type='submit' className='submitButton'>Log in</button>
                 </form>
-
+                {this.state.failedLoginMessage}
             </div>
         )
     }

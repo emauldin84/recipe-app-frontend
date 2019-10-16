@@ -56,6 +56,7 @@ setUserState = (userData) => {
   })
 }
 
+// pass to Login and Register for check?
 handleGetRecipes() {
   axios.get(`/recipes/allrecipes`)
     .then(res => {
@@ -114,24 +115,41 @@ handleSignOut = () => {
 
   render() {
     let routes = (
-      <div>
-        <Nav loggedIn={this.state.loggedIn} recipes={this.state.recipes} handleSignOut={this.handleSignOut}/>
-        <Switch>
+      <Switch>
+        <Route
+          path='/register'
+          render={(props) => <Register
+                          {...props}
+                          />}
+        />
+        <Route
+          path='/login'
+          render={(props) => <Login
+                          {...props}
+                          />}
+        />
+        <Redirect to='/login' />
+    </Switch>
+
+    )
+    if(this.state.loggedIn) {
+      routes = (
+        <div>
           <Route
-            path='/register'
-            render={(props) => <Register
-                            {...props}
-                            />}
+          path='/register'
+          render={(props) => <Register
+                          {...props}
+                          />}
           />
           <Route
-            path='/login'
-            render={(props) => <Login
-                            {...props}
-                            />}
+          path='/login'
+          render={(props) => <Login
+                          {...props}
+                          />}
           />
+          
           <Route
-          // added reroute option if user not logged in.
-            path={this.state.loggedIn ? '/recipe/:id' : '/register'}
+            path={'/recipe/:id'}
             render={(props) => <Recipe 
                             {...props} 
                             selectedRecipe={this.state.selectedRecipe}
@@ -139,12 +157,12 @@ handleSignOut = () => {
                             handleClickedBackButton={this.clickedBackButtonHandler}
                             onTextEditorChangeHandlerEdit={this.onTextEditorChangeHandlerEdit}/>} />
           <Route
-            path={this.state.loggedIn ? '/new-recipe' : '/register'}
+            path={'/new-recipe'}
             render={(props) => <AddRecipeForm
                                 {...props}
                                 handleClickedBackButton={this.clickedBackButtonHandler}/>} />
           <Route 
-            path={this.state.loggedIn ? '/' : '/register'} exact 
+            path={'/'} exact 
             render={(props) => <Recipes 
                             {...props} 
                             recipes={this.state.recipes}
@@ -152,13 +170,15 @@ handleSignOut = () => {
                             handleSearch={this.handleSearch}
                             handleClearSearchBar={this.handleClearSearchBar}
                             handleClickedRecipe={this.clickedRecipeHandler}/>} />
-          <Redirect to='/' />
-        </Switch>
-      </div>
-    )
+          <Redirect to='/' />  
+        </div>
+      )
+    } 
+    
 
     return (
       <div className="App">
+        <Nav loggedIn={this.state.loggedIn} recipes={this.state.recipes} handleSignOut={this.handleSignOut}/>
         {routes}
       </div>
     );
