@@ -115,7 +115,7 @@ handleSignOut = () => {
   render() {
     let routes = (
       <div>
-        <Nav recipes={this.state.recipes} handleSignOut={this.handleSignOut}/>
+        <Nav loggedIn={this.state.loggedIn} recipes={this.state.recipes} handleSignOut={this.handleSignOut}/>
         <Switch>
           <Route
             path='/register'
