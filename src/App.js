@@ -27,20 +27,6 @@ class App extends Component {
 }
 
 async componentDidMount() {
-  // await axios.get('/session')
-  // .then(res => {
-  //   if(res.data.id){
-  //     this.setUserState(res.data)
-  //   }
-  //   if (res.data.message){
-  //     console.log('not loading session fast enough')
-  //   }
-  //   console.log('res.data',res.data)
-  // })
-  // console.log('state user', this.state.user)
-  // if(this.state.user){
-  //   this.handleGetRecipes()
-  // }
   await this.checkForSession()
 }
 
