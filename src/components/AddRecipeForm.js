@@ -67,7 +67,7 @@ class AddRecipeForm extends Component {
             details: this.state.detailsForUpload,
             photo: this.state.image ? `public/uploads/IMAGE-${Date.now()}-${this.state.image.name}` : this.state.imageUrl ? this.state.imageUrl : null,
             // retrieve user_id from JWT?
-            user_id: 3,
+            user_id: this.props.user.id,
         }
         console.log('formData', formData)
 

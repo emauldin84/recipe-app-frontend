@@ -150,6 +150,7 @@ handleSignOut = () => {
             path={'/new-recipe'}
             render={(props) => <AddRecipeForm
                                 {...props}
+                                user={this.state.user}
                                 handleClickedBackButton={this.clickedBackButtonHandler}/>} />
           <Route 
             path={'/'} exact 
