@@ -73,11 +73,9 @@ class AddRecipeForm extends Component {
 
         axios.post('/recipes/add-new-recipe', formData)
         .then(res => {
-            console.log(res.data)
-            console.log('The file was successfully uploaded')
-            
-            this.props.history.push('/')
+            console.log('This file was successfully uploaded', res.data)
 
+            this.props.history.push('/')
         })
         .catch(err => err)
     }

@@ -11,11 +11,12 @@ import Nav from './containers/Nav'
 import AddRecipeForm from './components/AddRecipeForm'
 import Register from './components/Register'
 import Login from './components/Login'
+import Spinner from './utils/Spinner'
 
 class App extends Component {
   constructor(props){
     super(props)
-    
+  
   }
   state = {
     recipes: null,
@@ -24,15 +25,16 @@ class App extends Component {
     search: '',
     user: null,
     loggedIn: false,
+    loading: true,
 }
 
 async componentDidMount() {
-  await this.checkForSession()
+  this.checkForSession()
 }
 
-componentDidUpdate(prevProps, prevState) {
+async componentDidUpdate(prevProps, prevState) {
   if(prevState.recipes !== null && prevState.recipes === this.state.recipes) {
-    this.handleGetRecipes()
+    await this.handleGetRecipes()
   }
 }
 // shouldComponentUpdate(prevProps, prevState){
@@ -46,21 +48,25 @@ setUserState = (userData) => {
   })
 }
 
-checkForSession = async () => {
-  await axios.get('/session')
+checkForSession = () => {
+  axios.get('/session')
   .then(res => {
     if(res.data.id){
       this.setUserState(res.data)
     }
-    if (res.data.message){
+    if(res.data.message){
       console.log('not loading session fast enough')
     }
     console.log('res.data',res.data)
   })
-  console.log('state user', this.state.user)
-  if(this.state.user){
-    this.handleGetRecipes()
-  }
+  // console.log('state user', this.state.user)
+  .then(() => {
+    if(this.state.user){
+      console.log('getting recipes after session check')
+      this.handleGetRecipes()
+    }
+  })
+
 }
 
 handleGetRecipes() {
@@ -123,69 +129,58 @@ handleSignOut = () => {
   render() {
     let routes = null
 
-    if(this.state.loggedIn) {
-      routes = (
-        <div>
-          {/* <Route
-            path='/register'
-            render={(props) => <Register
+      if(this.state.loggedIn) {
+        // PRIVATE ROUTES
+        routes = (
+          <div>
+            <Route
+              path={'/recipe/:id'}
+              render={(props) => <Recipe 
+                              {...props} 
+                              selectedRecipe={this.state.selectedRecipe}
+                              editedDetails={this.state.editedDetails}
+                              handleClickedBackButton={this.clickedBackButtonHandler}
+                              onTextEditorChangeHandlerEdit={this.onTextEditorChangeHandlerEdit}/>} />
+            <Route
+              path={'/new-recipe'}
+              render={(props) => <AddRecipeForm
+                                  {...props}
+                                  user={this.state.user}
+                                  handleClickedBackButton={this.clickedBackButtonHandler}/>} />
+            <Route 
+              path={'/'} exact 
+              render={(props) => <Recipes 
+                              {...props} 
+                              recipes={this.state.recipes}
+                              search={this.state.search}
+                              handleSearch={this.handleSearch}
+                              handleClearSearchBar={this.handleClearSearchBar}
+                              handleClickedRecipe={this.clickedRecipeHandler}/>} />
+            <Redirect to='/' />  
+          </div>
+        )
+      } else {
+        // PUBLIC ROUTES
+        routes = (
+          <Switch>
+            <Route
+              path='/register'
+              render={(props) => <Register
                               {...props}
-                          />}
-          />
-          <Route
-            path='/login'
-            render={(props) => <Login
+                              checkForSession={this.checkForSession}
+                              />}
+            />
+            <Route
+              path='/login'
+              render={(props) => <Login
                               {...props}
-                          />}
-          /> */}
-          <Route
-            path={'/recipe/:id'}
-            render={(props) => <Recipe 
-                            {...props} 
-                            selectedRecipe={this.state.selectedRecipe}
-                            editedDetails={this.state.editedDetails}
-                            handleClickedBackButton={this.clickedBackButtonHandler}
-                            onTextEditorChangeHandlerEdit={this.onTextEditorChangeHandlerEdit}/>} />
-          <Route
-            path={'/new-recipe'}
-            render={(props) => <AddRecipeForm
-                                {...props}
-                                user={this.state.user}
-                                handleClickedBackButton={this.clickedBackButtonHandler}/>} />
-          <Route 
-            path={'/'} exact 
-            render={(props) => <Recipes 
-                            {...props} 
-                            recipes={this.state.recipes}
-                            search={this.state.search}
-                            handleSearch={this.handleSearch}
-                            handleClearSearchBar={this.handleClearSearchBar}
-                            handleClickedRecipe={this.clickedRecipeHandler}/>} />
-          <Redirect to='/' />  
-        </div>
-      )
-    } else {
-      routes = (
-        <Switch>
-          <Route
-            path='/register'
-            render={(props) => <Register
-                            {...props}
-                            checkForSession={this.checkForSession}
-                            />}
-          />
-          <Route
-            path='/login'
-            render={(props) => <Login
-                            {...props}
-                            checkForSession={this.checkForSession}
-                            />}
-          />
-          <Redirect to='/login' />
-      </Switch>
-      )
-    }
-    
+                              checkForSession={this.checkForSession}
+                              />}
+            />
+            <Redirect to='/login' />
+        </Switch>
+        )
+      }
 
     return (
       <div className="App">
