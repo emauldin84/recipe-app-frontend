@@ -1,5 +1,5 @@
 import React from 'react'
-import Spinner from './Spinner'
+
 
 const SearchBar = (props) =>{
 
@@ -7,7 +7,7 @@ const SearchBar = (props) =>{
     
     return(
         <div>
-            {props.recipes === null ? <Spinner /> : search}
+            {props.recipes === null ? null : search}
             {/* <input value={props.search} placeholder='Search...' className='searchBar Input' onChange={props.handleSearch} autofocus="autofocus"/> */}
         </div>
     )

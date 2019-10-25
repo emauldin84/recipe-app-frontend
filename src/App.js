@@ -11,12 +11,12 @@ import Nav from './containers/Nav'
 import AddRecipeForm from './components/AddRecipeForm'
 import Register from './components/Register'
 import Login from './components/Login'
-import Spinner from './utils/Spinner'
+
 
 class App extends Component {
   constructor(props){
     super(props)
-  
+    console.log('constructor')
   }
   state = {
     recipes: null,
@@ -28,18 +28,30 @@ class App extends Component {
     loading: true,
 }
 
-async componentDidMount() {
+// shouldComponentUpdate(prevProps, prevState){
+//   console.log('shouldComponentUpdate')
+//   console.log('Does state match prevState?', this.state.recipes === prevState.recipes)
+//   return this.state.recipes !== prevState.recipes
+// }
+
+componentDidMount() {
+  console.log('componentDidMount')
   this.checkForSession()
 }
 
-async componentDidUpdate(prevProps, prevState) {
+componentDidUpdate(prevProps, prevState) {
+  console.log('componentDidUpdate')
+
   if(prevState.recipes !== null && prevState.recipes === this.state.recipes) {
-    await this.handleGetRecipes()
+    this.handleGetRecipes()
   }
 }
-// shouldComponentUpdate(prevProps, prevState){
-//   return this.state.recipes !== prevState.recipes
-// }
+
+handleLoading() {
+  this.setState({
+    loading: false,
+  })
+}
 
 setUserState = (userData) => {
   this.setState({
@@ -50,7 +62,7 @@ setUserState = (userData) => {
 
 checkForSession = () => {
   axios.get('/session')
-  .then(res => {
+  .then ( async res => {
     if(res.data.id){
       this.setUserState(res.data)
     }
@@ -64,6 +76,7 @@ checkForSession = () => {
     if(this.state.user){
       console.log('getting recipes after session check')
       this.handleGetRecipes()
+      this.handleLoading()
     }
   })
 
@@ -127,11 +140,13 @@ handleSignOut = () => {
 
 
   render() {
-    let routes = null
+  console.log('render')
 
-      if(this.state.loggedIn) {
+    // let routes = null
+
+      // if(this.state.loggedIn) {
         // PRIVATE ROUTES
-        routes = (
+        let routes = (
           <div>
             <Route
               path={'/recipe/:id'}
@@ -159,7 +174,8 @@ handleSignOut = () => {
             <Redirect to='/' />  
           </div>
         )
-      } else {
+      // } 
+      if (!this.state.loggedIn) {
         // PUBLIC ROUTES
         routes = (
           <Switch>
@@ -185,7 +201,7 @@ handleSignOut = () => {
     return (
       <div className="App">
         <Nav loggedIn={this.state.loggedIn} recipes={this.state.recipes} handleSignOut={this.handleSignOut}/>
-        {routes}
+        {this.state.loading ? null : routes}
       </div>
     );
 
