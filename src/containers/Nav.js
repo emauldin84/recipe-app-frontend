@@ -7,8 +7,8 @@ const Nav = (props) => {
     let addNew = props.loggedIn ? <NavLink to='/new-recipe' title='Add New Recipe' className={classes}>+</NavLink> : null
     let logOut = props.loggedIn ? <NavLink to='/login' className='signOut' onClick={props.handleSignOut}>Sign out</NavLink> : null
     return (
-        <div className='navContainer'>
-            <NavLink to='/' className='title'>C's Recipes</NavLink>
+        <div className='navContainer container'>
+            <NavLink to='/' className='titleLogo'><img src="./media/PM-168.png" className='chef-icon'/><h1 className='title'>C's Recipes</h1></NavLink>
             <ul>
                 {addNew}
             </ul>

@@ -25,11 +25,22 @@ body, html {
   border-bottom: 1px solid #ccc;
 }
 
-.title {
+.titleLogo {
+  display: flex;
   text-decoration: none;
   color: #FFFFFF;
   font-size: calc(30px + 2vmin);
   margin-left: 3vw;
+}
+.title{
+  font-size: calc(25px + 2vmin);
+  font-weight: normal;
+  font-family: 'Liu Jian Mao Cao', cursive;
+}
+
+
+.chef-icon{
+  max-height: 2em;
 }
 
 ul {

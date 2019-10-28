@@ -175,7 +175,7 @@ handleSignOut = () => {
           </div>
         )
       } 
-      if (!this.state.loggedIn && !this.state.loading) {
+      if (!this.state.loggedIn && this.state.loading) {
         // PUBLIC ROUTES
         routes = (
           <Switch>
