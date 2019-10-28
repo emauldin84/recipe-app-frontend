@@ -142,11 +142,11 @@ handleSignOut = () => {
   render() {
   console.log('render')
 
-    // let routes = null
+    let routes = null
 
-      // if(this.state.loggedIn) {
+      if(this.state.loggedIn && !this.state.loading) {
         // PRIVATE ROUTES
-        let routes = (
+        routes = (
           <div>
             <Route
               path={'/recipe/:id'}
@@ -174,8 +174,8 @@ handleSignOut = () => {
             <Redirect to='/' />  
           </div>
         )
-      // } 
-      if (!this.state.loggedIn) {
+      } 
+      if (!this.state.loggedIn && !this.state.loading) {
         // PUBLIC ROUTES
         routes = (
           <Switch>
@@ -201,7 +201,7 @@ handleSignOut = () => {
     return (
       <div className="App">
         <Nav loggedIn={this.state.loggedIn} recipes={this.state.recipes} handleSignOut={this.handleSignOut}/>
-        {this.state.loading ? null : routes}
+        {routes}
       </div>
     );
 
