@@ -44,17 +44,23 @@ class AddRecipeForm extends Component {
         })
     }
 
+    // onImageChangeHandler = (e) => {
+    //     console.log(e.target.files[0])
+    //     this.setState({
+    //             image: e.target.files[0],
+    //     })
+    // }
+
     onSubmitHandler = (e) => {
         e.preventDefault()
 
         // const photoData = new FormData()
         // const file = this.state.image ? this.state.image.name : null
-        // photoData.append("photo", file)
-        // axios.post({
-        //     method: 'post',
-        //     url: '/recipes/upload-image',
-        //     data: photoData,
-        //     config: { headers: { 'Content-Type': 'multipart/form-data' } }
+        // photoData.append("file", file)
+        // axios.post('/recipes/photo-uploader', photoData, {
+        //     headers: { 
+        //         'Content-Type': 'multipart/form-data',
+        //     }
         // })
         // .then(res => {
         //     console.log('response from file upload',res)
@@ -80,12 +86,6 @@ class AddRecipeForm extends Component {
         .catch(err => err)
     }
 
-    // onImageChangeHandler = (e) => {
-    //     console.log(e.target.files[0])
-    //     this.setState({
-    //             image: e.target.files[0],
-    //     })
-    // }
 
     render() {
         console.log('DETAILS FOR UPLOAD', this.state.detailsForUpload)

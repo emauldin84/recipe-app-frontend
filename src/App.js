@@ -68,6 +68,7 @@ checkForSession = () => {
     }
     if(res.data.message){
       console.log('not loading session fast enough')
+      this.handleLoading()
     }
     console.log('res.data',res.data)
   })
@@ -175,7 +176,7 @@ handleSignOut = () => {
           </div>
         )
       } 
-      if (!this.state.loggedIn && this.state.loading) {
+      if (!this.state.loggedIn && !this.state.loading) {
         // PUBLIC ROUTES
         routes = (
           <Switch>
