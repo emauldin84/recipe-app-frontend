@@ -160,7 +160,7 @@ handleSignOut = () => {
       if(this.state.loggedIn && !this.state.loading) {
         // PRIVATE ROUTES
         routes = (
-          <div>
+          <Switch>
             <Route
               path={'/recipe/:id'}
               render={(props) => <Recipe 
@@ -185,7 +185,7 @@ handleSignOut = () => {
                               handleClearSearchBar={this.handleClearSearchBar}
                               handleClickedRecipe={this.clickedRecipeHandler}/>} />
             <Redirect to='/' />  
-          </div>
+          </Switch>
         )
       } 
       if (!this.state.loggedIn && !this.state.loading) {
