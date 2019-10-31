@@ -11,6 +11,7 @@ import Nav from './containers/Nav'
 import AddRecipeForm from './components/AddRecipeForm'
 import Register from './components/Register'
 import Login from './components/Login'
+// import SearchBar from './utils/SearchBar'
 
 
 class App extends Component {
@@ -26,6 +27,7 @@ class App extends Component {
     user: null,
     loggedIn: false,
     loading: true,
+    history: null,
 }
 
 // shouldComponentUpdate(prevProps, prevState){
@@ -41,13 +43,23 @@ componentDidMount() {
 
 componentDidUpdate(prevProps, prevState) {
   console.log('componentDidUpdate')
+  if (prevState.history !== this.props.history.location.pathname) {
+    this.setHistoryState()
+
+  }
 
   if(prevState.recipes !== null && prevState.recipes === this.state.recipes) {
     this.handleGetRecipes()
   }
 }
 
-handleLoading() {
+setHistoryState = () => {
+  this.setState({
+    history: this.props.history.location.pathname
+  })
+}
+
+handleLoading = () => {
   this.setState({
     loading: false,
   })
@@ -103,8 +115,7 @@ clickedRecipeHandler = (recipeId) => {
     })
     this.setState({
         selectedRecipe: recipe
-    }, () => this.props.history.push(`/recipe/${recipeId}`))
-    
+    }, () => this.props.history.push(`/recipe/${recipeId}`))  
 }
 
 clickedBackButtonHandler = () => {
@@ -142,6 +153,7 @@ handleSignOut = () => {
 
   render() {
   console.log('render')
+  console.log('HISTORY', this.props.history.location.pathname)
 
     let routes = null
 
@@ -199,10 +211,22 @@ handleSignOut = () => {
         )
       }
 
+    // let clearSearchClass = this.state.search.length > 0 ? 'clearSearch': 'hideClearSearch'
+
     return (
       <div className="App">
-        <Nav loggedIn={this.state.loggedIn} recipes={this.state.recipes} handleSignOut={this.handleSignOut}/>
+        <Nav 
+          loggedIn={this.state.loggedIn} 
+          recipes={this.state.recipes} 
+          handleSignOut={this.handleSignOut}
+          search={this.state.search}
+          handleSearch={this.handleSearch}
+          history={this.state.history}
+          handleClearSearchBar={this.handleClearSearchBar}/>
+        <div className='body'>
         {routes}
+
+        </div>
       </div>
     );
 

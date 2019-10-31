@@ -15,14 +15,21 @@ body, html {
 }
 
 .navContainer{
+  position: fixed;
   display: flex;
-  min-height: 4em;
+  height: 100px;
   min-width: 100vw;
   width: 100%;
   display: flex;
   align-items: center;
   background-color: #464a52;
   border-bottom: 1px solid #ccc;
+  z-index: 3;
+}
+
+.body {
+  margin-top: 4em;
+  min-width: 100vw;
 }
 
 .titleLogo {
@@ -117,6 +124,10 @@ ul {
   flex-wrap: wrap;
   align-items: stretch;
   justify-content: center;
+  overflow: hidden;
+  height: 100%;
+  z-index: 0;
+  margin-top: 80px;
 }
 .card {
   display: flex;
@@ -133,7 +144,6 @@ ul {
   height: 15vh;
   background-color: #464a52;
   transition: all .2s ease-in-out;
-
 } 
 .card:hover {
   transform: scale(1.05);
@@ -184,16 +194,22 @@ h3 {
 
 }
 
+.recipeFormContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .form, .recipeContainer{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: auto;
   margin-top: calc(20px + 2em);
   border: 1px solid #ccc;
   background-color: #464a52;
   padding: calc(10px + 1em);
-  /* max-width: 20em;  */
+  max-width: 80%; 
 }
 .editRecipeForm{
   width: 80vw;
@@ -212,20 +228,28 @@ h3 {
   display: block;
 }
 .searchBarContainer{
+  position: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+  width: 100%;
+  z-index: 5;
+  margin-top: 78px;
+  background-color: #282c34;
 }
 .searchBar {
-  margin: calc(5px + 1vmin);
+  margin: 15px;
+  margin-bottom: 8px;
+  margin-left: calc(-10px - 6vmin);
   border: none; 
   border-width: 0; 
   box-shadow: none;
   border-bottom: 1px solid #ccc;
-  background-color: #282c34;
+  background-color: transparent;
   outline: 0;
   color: white;
+  font-size: 16px;
 } 
 .searchBar::placeholder {
   color: #ccc;
@@ -234,8 +258,9 @@ h3 {
 .clearSearch {
   color: rgba(255, 255, 255, 0.3);
   font-size: calc(3px + 2vmin);
-  margin-left: calc(-10px - 6vmin);
+  margin-left: calc(-15px - 6vmin);
   margin-bottom: -10px;
+  width: 0px;
 }
 .clearSearch:hover {
   color: rgba(255, 255, 255, 1);
@@ -243,9 +268,10 @@ h3 {
 }
 .hideClearSearch {
   visibility: hidden;
-  margin-left: calc(-10px - 6vmin);
+  margin-left: calc(-15px - 6vmin);
   font-size: calc(3px + 2vmin);
   margin-bottom: -10px;
+  width: 0;
 }
 
 .styleToolBar {

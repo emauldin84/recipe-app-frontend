@@ -9,6 +9,7 @@ const SearchBar = (props) =>{
         <div>
             {props.recipes === null ? null : search}
             {/* <input value={props.search} placeholder='Search...' className='searchBar Input' onChange={props.handleSearch} autofocus="autofocus"/> */}
+            
         </div>
     )
 }

@@ -1,6 +1,5 @@
 import React from 'react'
 
-import SearchBar from '../utils/SearchBar'
 
 const Recipes = (props) => {
 
@@ -34,18 +33,8 @@ const Recipes = (props) => {
         )
     }) : null
 
-    let clearSearchClass = props.search.length > 0 ? 'clearSearch': 'hideClearSearch'
-
     return(
         <div>
-            <div className='searchBarContainer'>
-                <SearchBar 
-                    search={props.search}
-                    handleSearch={props.handleSearch}
-                    recipes={props.recipes}
-                />
-                <div className={clearSearchClass} onClick={props.handleClearSearchBar}>clear</div>
-            </div>
             <div className='cards'>
                 {recipes}
             </div>

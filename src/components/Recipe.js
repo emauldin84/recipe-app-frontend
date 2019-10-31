@@ -124,25 +124,23 @@ class Recipe extends Component {
             return(
                 <div key={recipe.id}>
                     
-                    <div>
-                        <div className='button-container'>
-                            {editDiscard}
-                            <FaTrash className='deleteButton' title='Delete' onClick={this.deleteHandler} style={!this.state.editing ? null : null}/>
-                        </div>
-                        <form action={`/recipes/edit/${this.props.selectedRecipe[0].id}`} className='editRecipeForm' encType="multipart/form-data" method="post" onSubmit={this.onSaveHandler}>
-                            <div className='saveButtonContainer'>
-                                <button type='submit' className='saveButtonInnerContainer' title='Save changes' style={this.state.editing ? null : { display: 'none' }}><FaSave className='saveButton'/></button>
-                            </div>
-                            {title}
-                            {date}
-                            {image}
-                            <div className='recipeDetails'>
-                                {details}
-                            </div>
-                        </form>
+                    <div className='button-container'>
+                        {editDiscard}
+                        <FaTrash className='deleteButton' title='Delete' onClick={this.deleteHandler} style={!this.state.editing ? null : null}/>
                     </div>
-    
+                    <form action={`/recipes/edit/${this.props.selectedRecipe[0].id}`} className='editRecipeForm' encType="multipart/form-data" method="post" onSubmit={this.onSaveHandler}>
+                        <div className='saveButtonContainer'>
+                            <button type='submit' className='saveButtonInnerContainer' title='Save changes' style={this.state.editing ? null : { display: 'none' }}><FaSave className='saveButton'/></button>
+                        </div>
+                        {title}
+                        {date}
+                        {image}
+                        <div className='recipeDetails'>
+                            {details}
+                        </div>
+                    </form>
                 </div>
+    
             )
         }) : null
     
