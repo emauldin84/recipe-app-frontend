@@ -56,7 +56,7 @@ class Register extends Component {
                 <h2 className='loginregisterTitle'>Register</h2>
                 <p className='or'>or</p>
                 <NavLink to='/login' className='switchRegisterLogin'>Log in</NavLink>
-                <form className='form' action='/users/add-new-user' encType="multipart/form-data" method="post" onSubmit={this.handleInputSubmit}>
+                <form className='form loginRegisterForm' action='/users/add-new-user' encType="multipart/form-data" method="post" onSubmit={this.handleInputSubmit}>
                     <label className='login-register-label Label'>First Name</label>
                     <input id='firstName' value={this.state.firstName} placeholder='ex. John' className='Input imageUrlInput' onChange={this.handleInputChange} required/>
                     

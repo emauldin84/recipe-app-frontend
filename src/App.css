@@ -214,6 +214,9 @@ h3 {
 .editRecipeForm{
   width: 80vw;
 }
+.loginRegisterForm{
+  margin-top: calc(-24px + 2em);
+}
 
 .Input {
   width: 80vw;
@@ -336,6 +339,7 @@ textarea {
 
 .loginregisterTitle{
   margin-bottom: 0;
+  margin-top: 50px;
 }
 
 .or {

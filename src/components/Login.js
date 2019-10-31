@@ -51,7 +51,7 @@ class Login extends Component {
                 <h2 className='loginregisterTitle'>Log in</h2>
                 <p className='or'>or</p>
                 <NavLink to='/register' className='switchRegisterLogin'>Register</NavLink>
-                <form className='form' action='/users/login' encType="multipart/form-data" method="post" onSubmit={this.handleInputSubmit}>
+                <form className='form loginRegisterForm' action='/users/login' encType="multipart/form-data" method="post" onSubmit={this.handleInputSubmit}>
                     <label className='login-register-label Label'>Email</label>
                     <input id='email' type="email" value={this.state.email} placeholder='enter email' className='Input imageUrlInput' onChange={this.handleInputChange} required/>
                     

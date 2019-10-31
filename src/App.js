@@ -160,7 +160,7 @@ handleSignOut = () => {
       if(this.state.loggedIn && !this.state.loading) {
         // PRIVATE ROUTES
         routes = (
-          <Switch>
+          <div>
             <Route
               path={'/recipe/:id'}
               render={(props) => <Recipe 
@@ -185,33 +185,31 @@ handleSignOut = () => {
                               handleClearSearchBar={this.handleClearSearchBar}
                               handleClickedRecipe={this.clickedRecipeHandler}/>} />
             <Redirect to='/' />  
-          </Switch>
+          </div>
         )
       } 
       if (!this.state.loggedIn && !this.state.loading) {
         // PUBLIC ROUTES
         routes = (
-          <Switch>
+          <div>
             <Route
-              path='/register'
+              path={'/register'}
               render={(props) => <Register
                               {...props}
                               checkForSession={this.checkForSession}
                               />}
             />
             <Route
-              path='/login'
+              path={'/login'}
               render={(props) => <Login
                               {...props}
                               checkForSession={this.checkForSession}
                               />}
             />
             <Redirect to='/login' />
-        </Switch>
+        </div>
         )
       }
-
-    // let clearSearchClass = this.state.search.length > 0 ? 'clearSearch': 'hideClearSearch'
 
     return (
       <div className="App">

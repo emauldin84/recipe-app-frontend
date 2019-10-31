@@ -81,7 +81,7 @@ class TextEditor extends Component {
                         handleKeyCommand={this.handleKeyCommand}
                         onChange={this.onChange}
                         // plugins={this.plugins}
-                        placeholder='Enter ingredients, timing and recipe steps...'
+                        placeholder='Recipe steps and ingredients'
                         spellCheck={true}
                         readOnly={false}
                         required={true}
