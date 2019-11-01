@@ -109,7 +109,10 @@ ul {
 }
 
 .backButton-container {
-  float: left;
+  position: absolute;
+  top: calc(150px + 2vmin);
+  left: calc(1em + 3.5vmin);
+  /* float: left; */
   margin-left: -4vmin;
   margin-top: calc(-1em - 3vmin);
 }
@@ -205,7 +208,7 @@ h3 {
   justify-content: center;
   align-items: center;
   margin: auto;
-  margin-top: calc(20px + 2em);
+  margin-top: calc(20px + 15vh);
   border: 1px solid #ccc;
   background-color: #464a52;
   padding: calc(10px + 1em);
