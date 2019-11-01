@@ -109,7 +109,7 @@ ul {
 }
 
 .backButton-container {
-  position: absolute;
+  position: fixed;
   top: calc(150px + 2vmin);
   left: calc(1em + 3.5vmin);
   /* float: left; */
