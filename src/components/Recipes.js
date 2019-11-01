@@ -10,7 +10,7 @@ const Recipes = (props) => {
     }) : null
 
     let recipes = recipesData ? props.search ? filteredRecipes.map(recipe => {
-        const image = recipe.recipe_photo ? <img src={recipe.recipe_photo} alt="Sample"/>  : null
+        const image = recipe.recipe_photo ? <img src={recipe.recipe_photo} alt={recipe.recipe_title}/>  : null
         return(
             <article className="card" key={recipe.id} onClick={() => props.handleClickedRecipe(recipe.id)}>
                 {image}

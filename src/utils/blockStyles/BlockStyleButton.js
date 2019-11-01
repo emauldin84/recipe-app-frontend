@@ -5,7 +5,7 @@ class BlockStyleButton extends React.Component {
         this.props.onToggle(this.props.style)
     }
     render() {
-        let className = "RichEditor-styleButton"
+        let className = "RichEditor-styleButton formatButtons"
         if (this.props.active) {
         className += " RichEditor-activeButton"
         }

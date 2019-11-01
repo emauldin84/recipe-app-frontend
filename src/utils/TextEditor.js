@@ -65,9 +65,9 @@ class TextEditor extends Component {
         return (
             <div>
                 <div>
-                    <button onClick={this.onUnderlineClick} title='underline'><u>U</u></button>
-                    <button onClick={this.onBoldClick} title='bold'><b>B</b></button>
-                    <button onClick={this.onItalicClick} title='italics'><em>I</em></button>
+                    <button className="formatButtons" onClick={this.onUnderlineClick} title='underline'><u>U</u></button>
+                    <button className="formatButtons" onClick={this.onBoldClick} title='bold'><b>B</b></button>
+                    <button className="formatButtons" onClick={this.onItalicClick} title='italics'><em>I</em></button>
                     {/* <button className="highlight" onClick={this.onHighlightClick} title='highlight'><span style={{background: 'yellow'}}>H</span></button> */}
                     <BlockStyleToolbar
                         editorState={this.state.editorState}

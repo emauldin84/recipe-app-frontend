@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import moment from 'moment'
+import { FaSave } from 'react-icons/fa'
+
 
 
 import BackButton from '../utils/BackButton'
@@ -106,11 +108,13 @@ class AddRecipeForm extends Component {
                         </div>
                         <div>
                             {/* <label className='recipeTitleInput Label'>Title</label> */}
-                            <label className='recipeTitleInput Label'>Image</label>
-                            <input id='imageUrl' value={this.state.newRecipe.imageUrl} placeholder='Enter image URL' className='Input imageUrlInput' onChange={this.onImageUrlChangeHandler}/>
+                            <label for='url' className='recipeTitleInput Label'>Image</label>
+                            <input id='imageUrl' type='url' name='url' value={this.state.newRecipe.imageUrl} placeholder='Enter image URL' className='Input imageUrlInput' onChange={this.onImageUrlChangeHandler}/>
                         </div>
                         {/* <PhotoUploader handleImageSelect={this.onImageChangeHandler} image={this.state.image}/> */}
-                        <button type='submit' className='submitButton'>Save</button>
+                        {/* <button type='submit' className='submitButton'>Save</button> */}
+                        <button type='submit' className='submitButton saveButtonInnerContainer' title='Save Recipe'><FaSave className='saveButton'/></button>
+
 
                     </form>
                 </div>

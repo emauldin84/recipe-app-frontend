@@ -402,10 +402,37 @@ textarea {
   min-width: calc(10px + 4vmin);
   height: calc(10px + 4vmin);
 }
+.formatButtonsContainer{
+  margin-top: 20px;
+}
+.formatButtons{
+  text-decoration: none;
+  color: #FFFFFF;
+  background-color: #464a52;
+  font-size: calc(10px + 1vmin);
+  border: 1px solid #FFFFFF;
+  padding: 3px 5px;
+  margin: 3px;
+  box-sizing: border-box;
+  min-width: 30px;
+  /* display: block; */
+  /* text-align: center; */
+  box-shadow: 2px 2px 6px 0px  rgba(0,0,0,0.5);
+  transition: all .2s ease-in-out;
+}
+
+.formatButtons:hover {
+  color: #464a52;
+  background-color: #FFFFFF;
+  border: 1px solid #464a52;
+  transform: scale(1.1);
+  box-shadow: 6px 2px 6px 0px  rgba(0,0,0,0.7);
+}
 
 .saveButtonInnerContainer {
 margin: 0;
 padding: 0;
+border: none;
 }
 .saveButton{
   margin: 0;
@@ -416,6 +443,9 @@ padding: 0;
   border: 1px solid #464a52;
   transform: scale(1.1);
   box-shadow: 6px 2px 6px 0px  rgba(0,0,0,0.7);
+}
+.submitButton{
+  margin-top: 10px;
 }
 /* .editButton, .saveButton, .deleteButton {
   box-sizing: border-box;

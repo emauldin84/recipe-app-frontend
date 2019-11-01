@@ -8,7 +8,7 @@ class HeaderStyleDropdown extends React.Component {
     
     render() {
         return (
-        <select value={this.props.active} onChange={this.onToggle}>
+        <select value={this.props.active} onChange={this.onToggle} className="formatButtons">
             <option value="">Header Levels</option>
             {this.props.headerOptions.map(heading => {
             return (
