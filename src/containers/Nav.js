@@ -22,11 +22,12 @@ const Nav = (props) => {
     
     : null
 
+    let route = props.loggedIn ? '/' : '/login'
     
     return (
         <div className='navContainer container'>
             <div className='navContainer'>
-                <NavLink to='/' className='titleLogo'><img alt="Chef Caitlin" src="./media/PM-168.png" className='chef-icon'/><h1 className='title'>C's Recipes</h1></NavLink>
+                <NavLink to={route} className='titleLogo'><img alt="Chef Caitlin" src="./media/PM-168.png" className='chef-icon'/><h1 className='title'>C's Recipes</h1></NavLink>
                 <ul>
                     {addNew}
                 </ul>

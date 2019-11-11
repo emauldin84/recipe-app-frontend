@@ -95,7 +95,7 @@ checkForSession = () => {
 
 }
 
-handleGetRecipes() {
+handleGetRecipes = () => {
   axios.get(`/recipes/allrecipes`)
     .then(res => {
       console.log('RECIPES',res.data)
@@ -206,9 +206,11 @@ handleSignOut = () => {
                               checkForSession={this.checkForSession}
                               />}
             />
+            
             <Redirect to='/login' />
         </div>
         )
+        console.log("window performance", typeof window.performance.navigation.type)
       }
 
     return (
