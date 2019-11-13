@@ -167,9 +167,10 @@ ul {
   z-index: 1;
   margin-top: auto;
   margin-left: auto;
-  margin-right: -10px;
+  margin-right: 0px;
   margin-bottom: -5px;
   text-shadow: 4px 4px 6px  rgba(0,0,0,1);
+  text-align: right;
 }
 .recipeImage {
   max-width: 50%; 
@@ -191,7 +192,6 @@ ul {
 h3 {
   margin-block-start: 0em; 
   margin-block-end: 0em; 
-
 }
 
 .recipeFormContainer {
