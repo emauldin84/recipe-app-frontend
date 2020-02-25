@@ -120,7 +120,7 @@ class Recipe extends Component {
             let date = this.state.editing ? null : <p className='recipeAddedDate'><b>Recipe added:</b> {moment(recipe.recipe_added_date).format('LL')}</p>
 
             let editDiscard = this.state.editing ? <FaUndo className='editButton' title='Undo' onClick={this.onEditHandler}/> : <FaEdit className='editButton' title='Edit' onClick={this.onEditHandler}/>
-
+            
             return(
                 <div key={recipe.id}>
                     
