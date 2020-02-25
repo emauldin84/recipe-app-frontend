@@ -90,9 +90,9 @@ ul {
   justify-content: center;
 } */
 .recipeDetails {
-  display: flex;
+  /* display: flex; */
   align-items: center;
-  max-width: 90%;
+  /* max-width: 90%; */
 }
 .arrow {
   position: absolute;
@@ -211,6 +211,16 @@ h3 {
   padding: calc(10px + 1em);
   max-width: 80%; 
 }
+.recipe-title-container{
+  display: flex;
+  justify-content: center;
+  margin-right: 0;
+}
+.inner-recipe-title{
+  width: 80%;
+  align-self: center;
+}
+
 .editRecipeForm{
   width: 80vw;
 }
@@ -367,6 +377,7 @@ textarea {
   justify-content: center;
   align-items: center;
   margin-left: -30px;
+  margin-right: -20px;
 }
 
 .photoUploadButton, .submitButton {

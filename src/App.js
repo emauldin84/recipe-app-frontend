@@ -115,7 +115,8 @@ clickedRecipeHandler = (recipeId) => {
     })
     this.setState({
         selectedRecipe: recipe
-    }, () => this.props.history.push(`/recipe/${recipeId}`))  
+    }, () => this.props.history.push(`/recipe/${recipeId}`))
+    window.scrollTo(0, 0) 
 }
 
 clickedBackButtonHandler = () => {

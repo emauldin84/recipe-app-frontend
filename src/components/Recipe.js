@@ -103,7 +103,7 @@ class Recipe extends Component {
                                                 />
             // const image = recipe.recipe_photo || !recipe.recipe_photo ? this.state.editing ? <input id='imageUrl' defaultValue={recipe.recipe_photo} className='Input imageUrlInput' onChange={this.onImageUrlChangeHandler}/> : <img className='recipeImage'src={recipe.recipe_photo} alt="Sample"/>  : recipe.recipe_photo ? <img className='recipeImage'src={recipe.recipe_photo} alt="Sample"/> : null
 
-            const title = this.state.editing ? <input id='title' defaultValue={recipe.recipe_title} placeholder='What is the title of your dish?' className='Input' onChange={this.onTitleChangeHandler} type="text" required/> : <h3>{recipe.recipe_title}</h3>
+            const title = this.state.editing ? <input id='title' defaultValue={recipe.recipe_title} placeholder='What is the title of your dish?' className='Input' onChange={this.onTitleChangeHandler} type="text" required/> : <h3 className='inner-recipe-title'>{recipe.recipe_title}</h3>
                         
             let image = null
             if (recipe.recipe_photo || !recipe.recipe_photo) {
@@ -132,7 +132,9 @@ class Recipe extends Component {
                         <div className='saveButtonContainer'>
                             <button type='submit' className='saveButtonInnerContainer' title='Save changes' style={this.state.editing ? null : { display: 'none' }}><FaSave className='saveButton'/></button>
                         </div>
-                        {title}
+                        <div className='recipe-title-container'>
+                            {title}
+                        </div>
                         {date}
                         {image}
                         <div className='recipeDetails'>
