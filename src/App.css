@@ -231,6 +231,8 @@ h3 {
 }
 
 .loginRegisterForm{
+  display: flex;
+  flex-direction: column;
   margin-top: calc(-24px + 2em);
   align-items: center;
 }
