@@ -66,7 +66,7 @@ class TextEditor extends Component {
                         handleKeyCommand={this.handleKeyCommand}
                         onChange={this.onChange}
                         placeholder='Enter ingredients, timing and recipe steps...'
-                        spellCheck={true}
+                        spellCheck
                         readOnly={false}
                     />
 

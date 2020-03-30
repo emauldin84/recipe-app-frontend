@@ -25,14 +25,21 @@ class Login extends Component {
             email: this.state.email,
             password: this.state.password,
         }
-        console.log('formData',formData)
+        // console.log('formData',formData)
 
-        axios.post('/users/login', formData)
+        axios.post('/users/login', formData, /*{
+            auth: {
+                email: this.state.email,
+                password: this.state.password
+            }
+            
+        }*/)
         .then(async res => {
             console.log('DATA', res.data)
-            if(res.data.id){
+            if(res.data.verified){
                 await this.props.checkForSession()
-                console.log('The user was successfully logged in')
+                console.log(`User id: ${res.data.userId} was successfully logged in`)
+                console.log(`User token: ${res.data.token} was successfully logged in`)
                 this.props.history.push('/')
             } else {
                 this.setState({

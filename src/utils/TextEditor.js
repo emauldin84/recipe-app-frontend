@@ -23,8 +23,7 @@ class TextEditor extends Component {
     onChange = (editorState) => {
         let contentState = this.state.editorState.getCurrentContent()
         let uploadDetails = convertToRaw(contentState)
-        uploadDetails["content"] = JSON.stringify(uploadDetails.content)
-
+        uploadDetails["content"] = JSON.stringify(uploadDetails)
         this.setState({
             editorState
         }, this.props.onTextEditorChangeHandler(uploadDetails))
@@ -82,9 +81,8 @@ class TextEditor extends Component {
                         onChange={this.onChange}
                         // plugins={this.plugins}
                         placeholder='Recipe steps and ingredients'
-                        spellCheck={true}
                         readOnly={false}
-                        required={true}
+                        spellCheck
                     />
 
                 </div>

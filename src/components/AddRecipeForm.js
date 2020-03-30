@@ -19,7 +19,8 @@ class AddRecipeForm extends Component {
         },
         image: null,
         imageUrl: null,
-        detailsForUpload: null
+        detailsForUpload: null,
+        formValidated: true,
     }
 
     onTitleChangeHandler = (e) => {
@@ -75,7 +76,7 @@ class AddRecipeForm extends Component {
             details: this.state.detailsForUpload,
             photo: this.state.image ? `public/uploads/IMAGE-${Date.now()}-${this.state.image.name}` : this.state.imageUrl ? this.state.imageUrl : null,
             // retrieve user_id from JWT?
-            user_id: this.props.user.id,
+            user_id: this.props.userId,
         }
         console.log('formData', formData)
 
@@ -90,7 +91,7 @@ class AddRecipeForm extends Component {
 
 
     render() {
-        console.log('DETAILS FOR UPLOAD', this.state.detailsForUpload)
+        // console.log('DETAILS FOR UPLOAD', this.state.detailsForUpload)
         return (
             <div>
                 <BackButton handleClickedBackButton={this.props.handleClickedBackButton}/>
@@ -104,11 +105,11 @@ class AddRecipeForm extends Component {
                         <div>
                             <label className='recipeDetailsInput Label'>Recipe</label>
                             {/* <textarea id='details' value={this.state.newRecipe.details} className='Input' placeholder='Enter ingredients, timing and recipe steps...' onChange={this.onChangeHandler} rows='10'/> */}
-                            <TextEditor onTextEditorChangeHandler={this.onTextEditorChangeHandler}/>
+                            <TextEditor onTextEditorChangeHandler={this.onTextEditorChangeHandler} formValidated={this.state.formValidated}/>
                         </div>
                         <div>
                             {/* <label className='recipeTitleInput Label'>Title</label> */}
-                            <label for='url' className='recipeTitleInput Label'>Image</label>
+                            <label htmlFor='url' className='recipeTitleInput Label'>Image</label>
                             <input id='imageUrl' type='url' name='url' value={this.state.newRecipe.imageUrl} placeholder='Enter image URL' className='Input imageUrlInput' onChange={this.onImageUrlChangeHandler}/>
                         </div>
                         {/* <PhotoUploader handleImageSelect={this.onImageChangeHandler} image={this.state.image}/> */}

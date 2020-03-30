@@ -24,7 +24,7 @@ class App extends Component {
     selectedRecipe: null,
     editedDetails: null,
     search: '',
-    user: null,
+    userId: null,
     loggedIn: false,
     loading: true,
     history: null,
@@ -65,9 +65,9 @@ handleLoading = () => {
   })
 }
 
-setUserState = (userData) => {
+setUserState = (id) => {
   this.setState({
-    user: userData,
+    userId: id,
     loggedIn: true,
   })
 }
@@ -75,8 +75,9 @@ setUserState = (userData) => {
 checkForSession = () => {
   axios.get('/session')
   .then ( async res => {
+    console.log('RESPONSE.DATA', res.data)
     if(res.data.id){
-      this.setUserState(res.data)
+      this.setUserState(res.data.id)
     }
     if(res.data.message){
       console.log('not loading session fast enough')
@@ -86,7 +87,7 @@ checkForSession = () => {
   })
   // console.log('state user', this.state.user)
   .then(() => {
-    if(this.state.user){
+    if(this.state.userId){
       console.log('getting recipes after session check')
       this.handleGetRecipes()
       this.handleLoading()
@@ -174,7 +175,7 @@ handleSignOut = () => {
               path={'/new-recipe'}
               render={(props) => <AddRecipeForm
                                   {...props}
-                                  user={this.state.user}
+                                  userId={this.state.userId}
                                   handleClickedBackButton={this.clickedBackButtonHandler}/>} />
             <Route 
               path={'/'} exact 
@@ -211,7 +212,7 @@ handleSignOut = () => {
             <Redirect to='/login' />
         </div>
         )
-        console.log("window performance", typeof window.performance.navigation.type)
+        console.log("window performance", window.performance.navigation.type)
       }
 
     return (
