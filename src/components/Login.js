@@ -35,11 +35,9 @@ class Login extends Component {
             
         }*/)
         .then(async res => {
-            console.log('DATA', res.data)
+            // console.log('DATA', res.data)
             if(res.data.verified){
                 await this.props.checkForSession()
-                console.log(`User id: ${res.data.userId} was successfully logged in`)
-                console.log(`User token: ${res.data.token} was successfully logged in`)
                 this.props.history.push('/')
             } else {
                 this.setState({

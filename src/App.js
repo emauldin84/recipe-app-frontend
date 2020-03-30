@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
+import { Route, Redirect, withRouter } from 'react-router-dom'
 import axios from 'axios'
 
 
@@ -15,10 +15,7 @@ import Login from './components/Login'
 
 
 class App extends Component {
-  constructor(props){
-    super(props)
-    console.log('constructor')
-  }
+
   state = {
     recipes: null,
     selectedRecipe: null,
@@ -37,12 +34,10 @@ class App extends Component {
 // }
 
 componentDidMount() {
-  console.log('componentDidMount')
   this.checkForSession()
 }
 
 componentDidUpdate(prevProps, prevState) {
-  console.log('componentDidUpdate')
   if (prevState.history !== this.props.history.location.pathname) {
     this.setHistoryState()
 
@@ -75,20 +70,17 @@ setUserState = (id) => {
 checkForSession = () => {
   axios.get('/session')
   .then ( async res => {
-    console.log('RESPONSE.DATA', res.data)
     if(res.data.id){
       this.setUserState(res.data.id)
     }
     if(res.data.message){
-      console.log('not loading session fast enough')
+      console.log('user not logged in')
       this.handleLoading()
     }
-    console.log('res.data',res.data)
   })
   // console.log('state user', this.state.user)
   .then(() => {
     if(this.state.userId){
-      console.log('getting recipes after session check')
       this.handleGetRecipes()
       this.handleLoading()
     }
@@ -99,7 +91,6 @@ checkForSession = () => {
 handleGetRecipes = () => {
   axios.get(`/recipes/allrecipes`)
     .then(res => {
-      console.log('RECIPES',res.data)
       if(res.data !== this.state.recipes){
         const recipesData = res.data
         this.setState({
@@ -147,16 +138,14 @@ handleSignOut = () => {
   .then(
     this.setState({
       loggedIn: false,
-      user: null,
+      userId: null,
+      recipes: null,
     })
   )
 }
 
 
   render() {
-  console.log('render')
-  console.log('HISTORY', this.props.history.location.pathname)
-
     let routes = null
 
       if(this.state.loggedIn && !this.state.loading) {
@@ -212,7 +201,6 @@ handleSignOut = () => {
             <Redirect to='/login' />
         </div>
         )
-        console.log("window performance", window.performance.navigation.type)
       }
 
     return (

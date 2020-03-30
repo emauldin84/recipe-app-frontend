@@ -51,8 +51,8 @@ class Recipe extends Component {
     onSaveHandler = async (e) => {
         e.preventDefault()
         await this.setStateDetailsForUpload()
-        console.log('STATE DETAILS FOR UPLOAD',this.state.detailsForUpload)
-        console.log('EDITED DETAILS FOR UPLOAD',this.props.editedDetails)
+        // console.log('STATE DETAILS FOR UPLOAD',this.state.detailsForUpload)
+        // console.log('EDITED DETAILS FOR UPLOAD',this.props.editedDetails)
         // FINISH BUILDING THIS OUT
         // this.state.detailsForUpload are showing 'null'
 
@@ -61,12 +61,12 @@ class Recipe extends Component {
             details: this.state.detailsForUpload !== null ? this.state.detailsForUpload : this.props.selectedRecipe[0].recipe_details,
             photo: this.state.imageUrl !== null ? this.state.imageUrl : this.props.selectedRecipe[0].recipe_photo,
         }
-        console.log('formData', formData)
+        // console.log('formData', formData)
 
         await axios.post(`/recipes/edit/${this.props.selectedRecipe[0].id}`, formData)
         .then(res => {
-            console.log('Response Data', res.data)
-            console.log('The file was successfully uploaded')
+            // console.log('Response Data', res.data)
+            // console.log('The file was successfully uploaded')
             
             this.setState({
                 editing: false,

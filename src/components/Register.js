@@ -28,11 +28,11 @@ class Register extends Component {
             email: this.state.email,
             password: this.state.password,
         }
-        console.log('formData',formData)
+        // console.log('formData',formData)
 
         axios.post('/users/add-new-user', formData)
         .then(async res => {
-            console.log('from register', res.data)
+            // console.log('from register', res.data)
             if (res.data.id) {
                 await this.props.checkForSession()
                 console.log('The user was successfully registered')

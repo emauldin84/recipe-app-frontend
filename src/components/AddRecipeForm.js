@@ -29,8 +29,8 @@ class AddRecipeForm extends Component {
                 ...this.state.newRecipe,
                 title: e.target.value,
             }
-        }, console.log(this.state.newRecipe))
-    }
+        }, // console.log(this.state.newRecipe)
+        )}
     onImageUrlChangeHandler = (e) => {
         this.setState({
             imageUrl: e.target.value,
@@ -78,11 +78,11 @@ class AddRecipeForm extends Component {
             // retrieve user_id from JWT?
             user_id: this.props.userId,
         }
-        console.log('formData', formData)
+        // console.log('formData', formData)
 
         axios.post('/recipes/add-new-recipe', formData)
         .then(res => {
-            console.log('This file was successfully uploaded', res.data)
+            // console.log('This file was successfully uploaded', res.data)
 
             this.props.history.push('/')
         })
