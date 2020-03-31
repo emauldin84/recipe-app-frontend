@@ -15,7 +15,6 @@ import Login from './components/Login'
 
 
 class App extends Component {
-
   state = {
     recipes: null,
     selectedRecipe: null,
@@ -74,11 +73,9 @@ checkForSession = () => {
       this.setUserState(res.data.id)
     }
     if(res.data.message){
-      console.log('user not logged in')
       this.handleLoading()
     }
   })
-  // console.log('state user', this.state.user)
   .then(() => {
     if(this.state.userId){
       this.handleGetRecipes()

@@ -25,17 +25,9 @@ class Login extends Component {
             email: this.state.email,
             password: this.state.password,
         }
-        // console.log('formData',formData)
 
-        axios.post('/users/login', formData, /*{
-            auth: {
-                email: this.state.email,
-                password: this.state.password
-            }
-            
-        }*/)
+        axios.post('/users/login', formData)
         .then(async res => {
-            // console.log('DATA', res.data)
             if(res.data.verified){
                 await this.props.checkForSession()
                 this.props.history.push('/')
