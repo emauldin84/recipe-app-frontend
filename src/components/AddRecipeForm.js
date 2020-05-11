@@ -110,11 +110,11 @@ class AddRecipeForm extends Component {
                         <div>
                             {/* <label className='recipeTitleInput Label'>Title</label> */}
                             <label htmlFor='url' className='recipeTitleInput Label'>Image</label>
-                            <input id='imageUrl' type='url' name='url' value={this.state.newRecipe.imageUrl} placeholder='Enter image URL' className='Input imageUrlInput' onChange={this.onImageUrlChangeHandler}/>
+                            <input id='imageUrl' type='url' name='url' value={this.state.newRecipe.imageUrl} placeholder='Enter image URL' className='Input imageUrlFieldInput' onChange={this.onImageUrlChangeHandler}/>
                         </div>
                         {/* <PhotoUploader handleImageSelect={this.onImageChangeHandler} image={this.state.image}/> */}
                         {/* <button type='submit' className='submitButton'>Save</button> */}
-                        <button type='submit' className='submitButton saveButtonInnerContainer' title='Save Recipe'><FaSave className='saveButton'/></button>
+                        <button type='submit' className='submitButton submitRecipe saveButtonInnerContainer' title='Save Recipe'><FaSave className='saveButton'/></button>
 
 
                     </form>

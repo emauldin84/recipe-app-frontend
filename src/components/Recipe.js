@@ -153,10 +153,9 @@ class Recipe extends Component {
         return(
             <div>
                 <BackButton handleClickedBackButton={this.props.handleClickedBackButton}/>
-
-            <div className='recipeContainer'>
-                {recipe}
-            </div>
+                <div className='recipeContainer'>
+                    {recipe}
+                </div>
             </div>
         )
 

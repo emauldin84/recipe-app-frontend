@@ -28,7 +28,7 @@ body, html {
 }
 
 .body {
-  margin-top: 4em;
+  margin-top: 80px;
   min-width: 100vw;
 }
 
@@ -95,8 +95,8 @@ ul {
   /* max-width: 90%; */
 }
 .arrow {
-  position: absolute;
-  display: inline-block;
+  position: relative;
+  /* display: inline-block; */
   margin: 5px;
   /* set size */
   padding: 8px;
@@ -113,7 +113,7 @@ ul {
   width: 100%;
   display: flex;
   margin-left: 20px;
-  margin-top: 50px;
+  margin-top: 35px;
 }
 
 .arrow:active {
@@ -379,6 +379,10 @@ textarea {
   margin-top: 10px;
   width: 85%;
 }
+.imageUrlFieldInput {
+  margin-top: 10px;
+  width: 100%;
+}
 
 .button-container{
   display: flex;
@@ -465,6 +469,11 @@ border: none;
 }
 .submitButton{
   margin-top: 10px;
+  align-self: 'center'
+}
+.submitRecipe{
+  margin-left: auto;
+  margin-right: auto;
 }
 /* .editButton, .saveButton, .deleteButton {
   box-sizing: border-box;

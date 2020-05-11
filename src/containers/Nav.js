@@ -25,7 +25,7 @@ const Nav = (props) => {
     let route = props.loggedIn ? '/' : '/login'
     
     return (
-        <div className='navContainer container'>
+        <div className='navContainer'>
             <div className='navContainer'>
                 <NavLink to={route} className='titleLogo'><img alt="Chef Caitlin" src="./media/PM-168.png" className='chef-icon'/><h1 className='title'>C's Recipes</h1></NavLink>
                 <ul>
