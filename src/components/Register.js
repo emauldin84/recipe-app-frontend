@@ -58,16 +58,16 @@ class Register extends Component {
                 <NavLink to='/login' className='switchRegisterLogin'>Log in</NavLink>
                 <form className='form loginRegisterForm' action='/users/add-new-user' encType="multipart/form-data" method="post" onSubmit={this.handleInputSubmit}>
                     <label className='login-register-label Label'>First Name</label>
-                    <input id='firstName' value={this.state.firstName} placeholder='ex. John' className='Input imageUrlInput' onChange={this.handleInputChange} required/>
+                    <input id='firstName' value={this.state.firstName} placeholder='ex. John' className='Input login-register-input' onChange={this.handleInputChange} required/>
                     
                     <label className='login-register-label Label'>Last Name</label>
-                    <input id='lastName' value={this.state.lastName} placeholder='ex. Appleseed' className='Input imageUrlInput' onChange={this.handleInputChange} required/>
+                    <input id='lastName' value={this.state.lastName} placeholder='ex. Appleseed' className='Input login-register-input' onChange={this.handleInputChange} required/>
                     
                     <label className='login-register-label Label'>Email</label>
-                    <input id='email' type="email" value={this.state.email} placeholder='ex. example@email.com' className='Input imageUrlInput' onChange={this.handleInputChange} required/>
+                    <input id='email' type="email" value={this.state.email} placeholder='ex. example@email.com' className='Input login-register-input' onChange={this.handleInputChange} required/>
                     
                     <label className='login-register-label Label'>Password</label>
-                    <input id='password' type="password" value={this.state.password} placeholder='be as complex as possible' className='Input imageUrlInput' onChange={this.handleInputChange} required/>
+                    <input id='password' type="password" value={this.state.password} placeholder='be as complex as possible' className='Input login-register-input' onChange={this.handleInputChange} required/>
                     
                     <button type='submit' className='submitButton'>Register</button>
                     {this.state.failedRegistrationMessage}

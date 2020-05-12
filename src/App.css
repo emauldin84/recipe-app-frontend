@@ -241,13 +241,20 @@ h3 {
   width: 80vw;
   box-sizing: border-box;
   outline: none;
-  color: #464a52;
+  color: white;
   box-shadow: none;
   border: 1px solid #ccc;
   background-color: white;
   font: inherit;
   padding: 6px 10px;
   display: block;
+}
+.login-register-input{
+  width: 350px;
+  margin-top: 5px;
+  background-color: #282c34;
+  border: none;
+  border-bottom: 1px solid white;
 }
 .searchBarContainer{
   position: fixed;

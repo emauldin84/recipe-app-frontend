@@ -50,10 +50,10 @@ class Login extends Component {
                 <NavLink to='/register' className='switchRegisterLogin'>Register</NavLink>
                 <form className='form loginRegisterForm' action='/users/login' encType="multipart/form-data" method="post" onSubmit={this.handleInputSubmit}>
                     <label className='login-register-label Label'>Email</label>
-                    <input id='email' type="email" value={this.state.email} placeholder='enter email' className='Input imageUrlInput' onChange={this.handleInputChange} required/>
+                    <input id='email' type="email" value={this.state.email} placeholder='enter email' className='Input login-register-input' onChange={this.handleInputChange} required/>
                     
                     <label className='login-register-label Label'>Password</label>
-                    <input id='password' type="password" value={this.state.password} placeholder='enter password' className='Input imageUrlInput' onChange={this.handleInputChange} required/>
+                    <input id='password' type="password" value={this.state.password} placeholder='enter password' className='Input login-register-input' onChange={this.handleInputChange} required/>
                     
                     <button type='submit' className='submitButton'>Log in</button>
                     {this.state.failedLoginMessage}
