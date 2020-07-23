@@ -70,6 +70,7 @@ checkForSession = () => {
   axios.get('/session')
   .then ( async res => {
     if(res.data.id){
+      console.log('checkForSession RESPONSE', res)
       this.setUserState(res.data.id)
     }
     if(res.data.message){
