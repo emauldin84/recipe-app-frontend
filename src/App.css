@@ -45,7 +45,6 @@ body, html {
   font-family: 'Liu Jian Mao Cao', cursive;
 }
 
-
 .chef-icon{
   max-height: 2em;
 }
@@ -249,6 +248,9 @@ h3 {
   padding: 6px 10px;
   display: block;
 }
+#title, #imageUrl{
+  color: #464a52;
+}
 .login-register-input{
   width: 350px;
   margin-top: 5px;
@@ -263,8 +265,8 @@ h3 {
   align-items: center;
   text-align: center;
   width: 100%;
-  z-index: 5;
-  margin-top: 78px;
+  z-index: 2;
+  margin-top: 140px;
   background-color: #282c34;
 }
 .searchBar {
@@ -327,6 +329,9 @@ h3 {
   display: block;
   text-align: left;
   width: 80vw;
+}
+.public-DraftEditorPlaceholder-root{
+  color: #747474 !important;
 }
 .recipeTitleInput {
   margin-top: 20px;
