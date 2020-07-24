@@ -70,10 +70,11 @@ checkForSession = () => {
   axios.get('/session')
   .then ( async res => {
     if(res.data.id){
-      console.log('checkForSession RESPONSE', res)
+      console.log('checkForSession SUCCESSFUL RESPONSE', res)
       this.setUserState(res.data.id)
     }
     if(res.data.message){
+      console.log('checkForSession RESPONSE MESSAGE', res)
       this.handleLoading()
     }
   })
@@ -83,6 +84,7 @@ checkForSession = () => {
       this.handleLoading()
     }
   })
+  .catch(err => console.log('checkForSession ERR: ', err))
 
 }
 
@@ -96,7 +98,7 @@ handleGetRecipes = () => {
         })
       }
     })
-    .catch (err => err)
+    .catch (err => console.log('handleGetRecipes ERR: ', err))
 }
 
 clickedRecipeHandler = (recipeId) => {

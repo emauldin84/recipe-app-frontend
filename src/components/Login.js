@@ -37,7 +37,7 @@ class Login extends Component {
                 })
             }
         })
-        .catch(err => err)
+        .catch(err => console.log('handleInputSubmit ERR:', err))
 
     }
 
